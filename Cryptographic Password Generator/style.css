@@ -1,0 +1,215 @@
+/* Basic reset */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    /* Generated 3D Glossy Wave Background */
+    background-color: #111;
+    background-image: url('bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+    width: 400px;
+    max-width: 90%;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    color: #ffffff;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Main Super Frosted Card */
+.main-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 2rem;
+    border-radius: 24px;
+    width: 500px;
+    max-width: 95%;
+    background: rgba(30, 30, 30, 0.4);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+}
+
+/* Glass Panel Component */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
+    border-radius: 12px;
+}
+
+.password-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    width: 400px;
+    max-width: 90%;
+}
+
+#password-output {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    font-size: 1.2rem;
+    padding: 10px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+#password-output::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    opacity: 1; 
+}
+
+#generate-btn {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: 10px;
+    transition: background-color 0.2s;
+}
+
+#generate-btn:hover {
+    background-color: #555;
+}
+
+/* Accordion text matching the glass aesthetic */
+.accordion-button,
+.accordion-body label {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-weight: 300 !important;
+}
+
+/* Minimalist Accordion Line Design */
+.accordion-item {
+    border: none !important;
+    background: transparent !important;
+    overflow: hidden;
+}
+
+.minimal-accordion {
+    background: transparent !important;
+    padding: 15px 0 !important;
+    box-shadow: none !important;
+}
+
+.minimal-accordion::before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    order: 1;
+}
+
+.minimal-accordion::after {
+    margin-left: 15px !important;
+    margin-right: 15px !important;
+    order: 2;
+    filter: invert(1); /* Makes the chevron white */
+}
+
+.minimal-accordion .right-line {
+    flex: 1;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    order: 3;
+    display: block;
+}
+
+/* Custom Glass Checkboxes */
+.custom-glass-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.custom-glass-checkbox:checked {
+    background: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.custom-glass-checkbox:checked::after {
+    content: '✔';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+    line-height: 1;
+}
+
+/* Custom Glass Number Input */
+.custom-glass-input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 6px;
+    padding: 5px;
+    text-align: center;
+    outline: none;
+}
+
+.custom-glass-input:focus {
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2.8rem;
+    }
+
+    .password-container {
+        flex-direction: column;
+    }
+
+    #password-output {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+
+    #generate-btn {
+        margin-left: 0;
+        margin-top: 10px;
+        width: 100%;
+    }
+}

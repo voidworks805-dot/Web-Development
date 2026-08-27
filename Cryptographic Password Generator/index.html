@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Password Generator</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-card">
+        <h1>Entropy</h1>
+        
+        <div class="password-container glass-panel">
+            <input type="text" id="password-output" readonly placeholder="Generated Password">
+            <button id="generate-btn">Generate</button>
+        </div>
+
+        <div class="accordion mt-4" id="settingsAccordion" style="width: 400px; max-width: 90%;">
+            <div class="accordion-item" style="background: transparent; border: none;">
+                <h2 class="accordion-header" id="headingSettings">
+                    <button class="accordion-button collapsed minimal-accordion" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSettings" aria-expanded="false" aria-controls="collapseSettings">
+                        <span class="right-line"></span>
+                    </button>
+                </h2>
+                <div id="collapseSettings" class="accordion-collapse collapse" aria-labelledby="headingSettings" data-bs-parent="#settingsAccordion">
+                    <div class="accordion-body glass-panel mt-2">
+                        <div class="settings">
+                            <div class="setting mb-2 d-flex justify-content-between align-items-center">
+                                <label for="length" class="mb-0">Password Length</label>
+                                <input type="number" id="length" min="4" max="10" value="10" class="custom-glass-input" style="max-width: 70px;">
+                            </div>
+                            <div class="setting mb-2 d-flex justify-content-between align-items-center">
+                                <label for="uppercase" class="mb-0">Include Uppercase letters</label>
+                                <input type="checkbox" id="uppercase" checked class="custom-glass-checkbox mt-0">
+                            </div>
+                            <div class="setting mb-2 d-flex justify-content-between align-items-center">
+                                <label for="lowercase" class="mb-0">Include Lowercase letters</label>
+                                <input type="checkbox" id="lowercase" checked class="custom-glass-checkbox mt-0">
+                            </div>
+                            <div class="setting mb-2 d-flex justify-content-between align-items-center">
+                                <label for="numbers" class="mb-0">Include Numbers</label>
+                                <input type="checkbox" id="numbers" checked class="custom-glass-checkbox mt-0">
+                            </div>
+                            <div class="setting d-flex justify-content-between align-items-center">
+                                <label for="symbols" class="mb-0">Include Symbols</label>
+                                <input type="checkbox" id="symbols" checked class="custom-glass-checkbox mt-0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
