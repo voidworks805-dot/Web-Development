@@ -1,4 +1,4 @@
-# Pomodoro Timer
+# Pomodoro Timer{In development}
 
 A clean, responsive Pomodoro Timer web application built with semantic HTML and CSS.
 
