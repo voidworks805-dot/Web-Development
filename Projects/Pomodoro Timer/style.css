@@ -1,0 +1,141 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(77, 236, 242);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  background-color: rgb(0, 76, 255);
+  padding: 40px 50px;
+  width: 90%;
+  max-width: 520px;
+  min-height: 350px;
+  border-radius: 20px;
+}
+
+.modes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.mode-btn {
+  background-color: transparent;
+  color: #ffffff;
+  border: none;
+  font-size: 1rem;
+  padding: 6px 16px;
+  cursor: pointer;
+  border-radius: 20px;
+  font-weight: normal;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.mode-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+#timer {
+  font-size: 4.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  letter-spacing: 2px;
+}
+
+#start-btn {
+  font-size: 1.6rem;
+  font-weight: bold;
+  border-radius: 20px;
+  padding: 12px 48px;
+  cursor: pointer;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
+  border: none;
+  transition: all 0.2s ease;
+}
+
+#start-btn:hover {
+  background-color: #000000;
+  color: rgb(254, 254, 255);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 30px 20px;
+    width: 95%;
+    min-height: auto;
+    gap: 1.2rem;
+  }
+
+  .modes {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 1rem;
+  }
+
+  .mode-btn {
+    font-size: 1rem;
+    padding: 8px 16px;
+    width: 100%;
+    max-width: 220px;
+    text-align: center;
+  }
+
+  #pomodoro-btn {
+    font-size: 0;
+  }
+
+  #pomodoro-btn::before {
+    content: "Focus";
+    font-size: 1rem;
+  }
+
+  #short-break-btn {
+    font-size: 0;
+  }
+
+  #short-break-btn::before {
+    content: "Short";
+    font-size: 1rem;
+  }
+
+  #long-break-btn {
+    font-size: 0;
+  }
+
+  #long-break-btn::before {
+    content: "Long";
+    font-size: 1rem;
+  }
+
+  #timer {
+    font-size: 3.2rem;
+  }
+
+  #start-btn {
+    font-size: 1.3rem;
+    padding: 10px 36px;
+  }
+}
