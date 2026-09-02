@@ -4,138 +4,610 @@
   padding: 0;
 }
 
+:root {
+  --font-family: 'Space Mono', monospace, ui-monospace, SFMono-Regular, Menlo, monospace;
+  --transition-smooth: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ----------------------------------------------------
+   Brutalist Terminal Color Palettes (Preserved Exact Colors)
+----------------------------------------------------- */
+
+/* Focus / Pomodoro: Electric Lagoon Blue & Deep Midnight Slate */
+body.theme-pomodoro {
+  --bg-color: #0A1118;
+  --card-bg: rgba(14, 20, 26, 0.94);
+  --card-border: #0EA5E9;
+  --card-shadow: 6px 6px 0px rgba(0, 0, 0, 0.85), 0 0 24px -4px rgba(14, 165, 233, 0.2);
+  --text-main: #0EA5E9;
+  --text-muted: #627A8C;
+  --ghost-hover-bg: rgba(14, 165, 233, 0.12);
+  --btn-active-bg: #0EA5E9;
+  --btn-active-text: #000000;
+  --start-btn-bg: #0EA5E9;
+  --start-btn-text: #000000;
+  --start-btn-hover: #38BDF8;
+}
+
+/* Short Break: Sea-Glass Teal & Deep Teal Onyx */
+body.theme-short-break {
+  --bg-color: #0A1313;
+  --card-bg: rgba(14, 22, 22, 0.94);
+  --card-border: #14B8A6;
+  --card-shadow: 6px 6px 0px rgba(0, 0, 0, 0.85), 0 0 24px -4px rgba(20, 184, 166, 0.2);
+  --text-main: #14B8A6;
+  --text-muted: #648280;
+  --ghost-hover-bg: rgba(20, 184, 166, 0.12);
+  --btn-active-bg: #14B8A6;
+  --btn-active-text: #000000;
+  --start-btn-bg: #14B8A6;
+  --start-btn-text: #000000;
+  --start-btn-hover: #2DD4BF;
+}
+
+/* Long Break: Emerald Sage & Deep Forest Charcoal */
+body.theme-long-break {
+  --bg-color: #0D1311;
+  --card-bg: rgba(14, 22, 19, 0.94);
+  --card-border: #10B981;
+  --card-shadow: 6px 6px 0px rgba(0, 0, 0, 0.85), 0 0 24px -4px rgba(16, 185, 129, 0.2);
+  --text-main: #10B981;
+  --text-muted: #658579;
+  --ghost-hover-bg: rgba(16, 185, 129, 0.12);
+  --btn-active-bg: #10B981;
+  --btn-active-text: #000000;
+  --start-btn-bg: #10B981;
+  --start-btn-text: #000000;
+  --start-btn-hover: #34D399;
+}
+
+/* ----------------------------------------------------
+   Base Layout & Animated Background
+----------------------------------------------------- */
+
 body {
-  font-family: sans-serif;
+  font-family: var(--font-family);
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(77, 236, 242);
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  transition: background-color var(--transition-smooth), color var(--transition-smooth);
+  padding: 1.5rem;
+  -webkit-font-smoothing: antialiased;
 }
 
+/* Brutalist Technical Container */
 .container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.5rem;
-  background-color: rgb(0, 76, 255);
-  padding: 40px 50px;
-  width: 90%;
-  max-width: 520px;
-  min-height: 350px;
-  border-radius: 20px;
+  gap: 1.6rem;
+  background-color: var(--card-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 2px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  padding: 34px 38px 48px 38px;
+  width: 100%;
+  max-width: 480px;
+  border-radius: 8px;
+  transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              border-radius 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              background-color var(--transition-smooth),
+              border-color var(--transition-smooth),
+              box-shadow var(--transition-smooth),
+              transform 0.2s ease;
 }
 
-.modes {
+/* Minimal Collapse Trigger Button (Permanent Bottom-Center Alignment) */
+.collapse-btn {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-muted);
+  padding: 5px 8px;
+  border-radius: 4px;
+  cursor: pointer;
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  align-items: center;
   justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.collapse-btn:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--btn-active-bg);
+  transform: translateX(-50%) scale(1.1);
+}
+
+.collapse-btn:active {
+  transform: translateX(-50%) scale(0.92);
+}
+
+/* Expanded View Content */
+.expanded-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Terminal Header Metadata */
+.terminal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  padding-bottom: 10px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.14);
+  gap: 0.4rem;
+  white-space: nowrap;
+}
+
+.term-tag {
+  color: var(--text-main);
+  flex-shrink: 0;
+}
+
+.term-dots {
+  flex: 1;
+  text-align: center;
+  letter-spacing: 0.25em;
+  opacity: 0.45;
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.term-meta {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* Terminal Footer Barcode & Status */
+.terminal-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.14);
+  margin-top: -2px;
+}
+
+.term-barcode {
+  font-size: 0.7rem;
+  letter-spacing: -0.1em;
+  color: var(--btn-active-bg);
+  opacity: 0.75;
+  font-weight: 700;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  text-align: center;
+  user-select: none;
+}
+
+.term-status {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Collapsed Mini Zen Pill View */
+.collapsed-view {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+  width: 100%;
+  cursor: pointer;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.collapsed-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background-color: var(--btn-active-bg);
+  box-shadow: 0 0 10px var(--btn-active-bg);
+  flex-shrink: 0;
+}
+
+.collapsed-timer {
+  font-size: 1.22rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.collapsed-mode {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.mode-short {
+  display: none;
+}
+
+.mode-full {
+  display: inline;
+}
+
+.expand-icon {
+  color: var(--text-muted);
+  transition: transform 0.2s ease, color 0.2s ease;
+  flex-shrink: 0;
+}
+
+/* Collapsed State Transformations */
+.container.is-collapsed {
+  max-width: 255px;
+  padding: 10px 18px;
+  border-radius: 4px;
+  gap: 0;
+  cursor: pointer;
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.9), 0 0 16px -2px var(--btn-active-bg);
+}
+
+.container.is-collapsed:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.95), 0 0 22px -2px var(--btn-active-bg);
+}
+
+.container.is-collapsed .collapse-btn,
+.container.is-collapsed .expanded-view {
+  display: none;
+}
+
+.container.is-collapsed .collapsed-view {
+  display: flex;
+  opacity: 1;
+}
+
+.container.is-collapsed:hover .expand-icon {
+  transform: translateY(2px);
+  color: var(--text-main);
+}
+
+/* ----------------------------------------------------
+   Mode Switcher Ghost Buttons (Terminal Selectors)
+----------------------------------------------------- */
+
+.modes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all var(--transition-smooth);
 }
 
 .mode-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   background-color: transparent;
-  color: #ffffff;
-  border: none;
-  font-size: 1rem;
-  padding: 6px 16px;
+  color: var(--text-muted);
+  border: 1px solid transparent;
+  font-family: inherit;
+  font-size: clamp(0.72rem, 1.8vw, 0.78rem);
+  font-weight: 700;
+  padding: 8px 4px;
   cursor: pointer;
-  border-radius: 20px;
-  font-weight: normal;
+  border-radius: 2px;
   white-space: nowrap;
-  transition: all 0.2s ease;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.1s steps(2);
 }
 
-.mode-btn:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+.mode-btn:hover:not(.active) {
+  background-color: var(--ghost-hover-bg);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.mode-btn.active {
+  background-color: var(--btn-active-bg);
+  color: #000000;
+  border-color: var(--btn-active-bg);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.9);
+}
+
+/* ----------------------------------------------------
+   Timer Display & Clean Single Progress Bar
+----------------------------------------------------- */
+
+.timer-box-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.55);
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  padding: 24px 20px 20px 20px;
+  gap: 1.2rem;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
+  transition: border-color var(--transition-smooth);
 }
 
 #timer {
+  font-family: inherit;
   font-size: 4.5rem;
-  font-weight: bold;
-  color: #ffffff;
-  letter-spacing: 2px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  user-select: none;
+  text-align: center;
+  transition: color var(--transition-smooth);
 }
 
+/* Simple Single Progress Bar Track & Fill */
+.progress-bar-track {
+  width: 100%;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 100%;
+  background-color: var(--btn-active-bg);
+  border-radius: 4px;
+  transition: width 0.08s linear, background-color var(--transition-smooth);
+}
+
+/* ----------------------------------------------------
+   Start / Action Mechanical Brutalist Button
+----------------------------------------------------- */
+
 #start-btn {
-  font-size: 1.6rem;
-  font-weight: bold;
-  border-radius: 20px;
-  padding: 12px 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 1.08rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  padding: 13px 36px;
+  min-width: 220px;
+  max-width: 100%;
   cursor: pointer;
-  background-color: #ffffff;
-  color: rgb(0, 0, 0);
-  border: none;
-  transition: all 0.2s ease;
+  background-color: var(--start-btn-bg);
+  color: #000000;
+  border: 2px solid var(--btn-active-bg);
+  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.9);
+  transition: transform 0.1s steps(2),
+              box-shadow 0.1s steps(2),
+              background-color var(--transition-smooth);
+  will-change: transform, box-shadow;
+  white-space: nowrap;
 }
 
 #start-btn:hover {
-  background-color: #000000;
-  color: rgb(254, 254, 255);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  background-color: var(--start-btn-hover);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.9);
 }
 
+#start-btn:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.9);
+}
+
+/* ----------------------------------------------------
+   Responsive Full/Short Text Toggles
+----------------------------------------------------- */
+
+.text-short,
+.btn-text-short,
+.status-short {
+  display: none;
+}
+
+.text-full,
+.btn-text-full,
+.status-full {
+  display: inline;
+}
+
+/* ----------------------------------------------------
+   Responsive Mobile Adjustments (Brutalist Terminal Layout)
+----------------------------------------------------- */
+
 @media (max-width: 480px) {
+  .text-full,
+  .btn-text-full,
+  .status-full {
+    display: none !important;
+  }
+
+  .text-short,
+  .btn-text-short,
+  .status-short {
+    display: inline !important;
+  }
+
   .container {
-    padding: 30px 20px;
-    width: 95%;
-    min-height: auto;
+    width: 100%;
+    max-width: 320px;
+    padding: 22px 18px 46px 18px;
+    border-radius: 6px;
     gap: 1.2rem;
   }
 
-  .modes {
-    flex-direction: column;
-    width: 100%;
-    align-items: center;
-    gap: 0.6rem;
-    margin-bottom: 1rem;
+  /* Terminal Header on mobile: Show ONLY // TIMER_SYS */
+  .term-dots,
+  .term-meta {
+    display: none !important;
   }
 
-  .mode-btn {
-    font-size: 1rem;
-    padding: 8px 16px;
+  .terminal-header {
+    justify-content: center;
     width: 100%;
-    max-width: 220px;
     text-align: center;
   }
 
-  #pomodoro-btn {
-    font-size: 0;
+  .term-tag {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-align: center;
+    width: 100%;
   }
 
-  #pomodoro-btn::before {
-    content: "Focus";
-    font-size: 1rem;
+  .modes {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+    gap: 0.35rem;
+    padding: 4px;
+    border-radius: 4px;
   }
 
-  #short-break-btn {
-    font-size: 0;
+  .mode-btn {
+    width: 100%;
+    text-align: center;
+    padding: 9px 12px;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
   }
 
-  #short-break-btn::before {
-    content: "Short";
-    font-size: 1rem;
+  /* Brutalist Timer Box on Mobile */
+  .timer-box-frame {
+    padding: 16px 14px 14px 14px;
+    gap: 0.75rem;
+    border-radius: 4px;
   }
 
-  #long-break-btn {
-    font-size: 0;
-  }
-
-  #long-break-btn::before {
-    content: "Long";
-    font-size: 1rem;
-  }
-
+  /* Perfectly Centered & Sized Timer Display */
   #timer {
-    font-size: 3.2rem;
+    font-size: clamp(2.4rem, 12vw, 3.0rem);
+    text-align: center;
+    width: 100%;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  .progress-bar-track {
+    height: 6px;
   }
 
   #start-btn {
-    font-size: 1.3rem;
-    padding: 10px 36px;
+    font-size: 0.96rem;
+    padding: 11px 24px;
+    width: 100%;
+    max-width: 190px;
+    min-width: unset;
+    letter-spacing: 0.08em;
+  }
+
+  /* Terminal Footer on Mobile */
+  .terminal-footer {
+    gap: 5px;
+    padding-top: 10px;
+  }
+
+  .term-barcode {
+    font-size: 0.62rem;
+    letter-spacing: 0.02em;
+  }
+
+  .term-status {
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* Collapse Chevron Button: Bottom Spacing on Mobile */
+  .collapse-btn {
+    bottom: 10px;
+  }
+
+  /* Collapsed Capsule Mobile Optimization: 3-Letter Shortform & Fit */
+  .mode-full {
+    display: none !important;
+  }
+
+  .mode-short {
+    display: inline !important;
+  }
+
+  .container.is-collapsed {
+    max-width: 200px;
+    padding: 9px 14px !important;
+    gap: 0;
+    border-radius: 4px;
+  }
+
+  .container.is-collapsed .collapse-btn {
+    display: none !important;
+  }
+
+  .collapsed-view {
+    gap: 0.65rem;
+  }
+
+  .collapsed-timer {
+    font-size: 1.12rem;
+    letter-spacing: -0.01em;
+  }
+
+  .collapsed-mode {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
   }
 }

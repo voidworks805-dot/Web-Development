@@ -3,21 +3,89 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pomodoro Timer</title>
-  <link rel="stylesheet" href="style.css">
+  <title>[ 25:00 ] POMODORO // SYS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
-<body>
+<body class="theme-pomodoro">
 
-  <main class="container">
-    <div class="modes">
-      <button type="button" class="mode-btn active" id="pomodoro-btn">Pomodoro</button>
-      <button type="button" class="mode-btn" id="short-break-btn">Short Break</button>
-      <button type="button" class="mode-btn" id="long-break-btn">Long Break</button>
+  <main class="container" id="main-container">
+    <!-- Full Expanded View -->
+    <div class="expanded-view" id="expanded-view">
+      
+      <!-- Terminal ASCII Header Meta -->
+      <div class="terminal-header">
+        <span class="term-tag">
+          <span class="text-full">// 01 > TIMER_SYS</span>
+          <span class="text-short">// TIMER_SYS</span>
+        </span>
+        <span class="term-dots">. . . . . .</span>
+        <span class="term-meta">[ 2026 ]</span>
+      </div>
+
+      <!-- Mode Selector Blocks -->
+      <div class="modes">
+        <button type="button" class="mode-btn active" id="pomodoro-btn">
+          <span class="btn-text-full">[ 01 > FOCUS ]</span>
+          <span class="btn-text-short">01 FOCUS</span>
+        </button>
+        <button type="button" class="mode-btn" id="short-break-btn">
+          <span class="btn-text-full">[ 02 > SHORT ]</span>
+          <span class="btn-text-short">02 SHORT</span>
+        </button>
+        <button type="button" class="mode-btn" id="long-break-btn">
+          <span class="btn-text-full">[ 03 > LONG ]</span>
+          <span class="btn-text-short">03 LONG</span>
+        </button>
+      </div>
+
+      <!-- Timer Display & Single Progress Bar -->
+      <div class="timer-box-frame" id="timer-box-frame">
+        <div id="timer">25:00</div>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="progress-bar-fill"></div>
+        </div>
+      </div>
+
+      <!-- Action Mechanical Button -->
+      <button type="button" id="start-btn">
+        <span class="btn-text-full">[ > EXECUTE ]</span>
+        <span class="btn-text-short">START</span>
+      </button>
+
+      <!-- Terminal ASCII Footer Barcode & Status -->
+      <div class="terminal-footer">
+        <div class="term-barcode" aria-hidden="true">||||||||||||||||||||||||||||||</div>
+        <div class="term-status" id="term-status">
+          <span class="status-full">STATUS: STANDBY // READY</span>
+          <span class="status-short">READY // 25:00</span>
+        </div>
+      </div>
     </div>
-    <div id="timer">25:00</div>
-    <button type="button" id="start-btn">Start</button>
+
+    <!-- Minimal Collapse / Expand Button (Bottom-Center Aligned) -->
+    <button type="button" class="collapse-btn" id="collapse-btn" aria-label="Toggle minimal view" title="Toggle Minimal View">
+      <svg class="collapse-icon-expanded" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="4 14 12 6 20 14"></polyline>
+      </svg>
+    </button>
+
+    <!-- Ultra-Minimal Collapsed Zen Pill View -->
+    <div class="collapsed-view" id="collapsed-view" role="button" tabindex="0" title="Click to expand">
+      <span class="collapsed-dot"></span>
+      <span class="collapsed-timer" id="collapsed-timer">25:00</span>
+      <span class="collapsed-mode" id="collapsed-mode">
+        <span class="mode-full">// POMODORO</span>
+        <span class="mode-short">// POM</span>
+      </span>
+      <svg class="expand-icon" viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </div>
   </main>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>
