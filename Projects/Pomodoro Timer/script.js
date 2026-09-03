@@ -1,27 +1,32 @@
-// Timer Mode Configurations
+// Timer Mode Configurations (Temporarily set to 10s for testing)
 const MODES = {
   pomodoro: {
     name: '[ 01 > FOCUS ]',
     shortName: 'POM',
     theme: 'theme-pomodoro',
-    durationSeconds: 25 * 60,
-    defaultText: '25:00'
+    durationSeconds: 10,
+    defaultText: '00:10'
   },
   shortBreak: {
     name: '[ 02 > SHORT ]',
     shortName: 'SBR',
     theme: 'theme-short-break',
-    durationSeconds: 5 * 60,
-    defaultText: '05:00'
+    durationSeconds: 10,
+    defaultText: '00:10'
   },
   longBreak: {
     name: '[ 03 > LONG ]',
     shortName: 'LBR',
     theme: 'theme-long-break',
-    durationSeconds: 15 * 60,
-    defaultText: '15:00'
+    durationSeconds: 10,
+    defaultText: '00:10'
   }
 };
+
+// Progress Bar Direction:
+// 'depletion' = starts at 100% full & drains down to 0% (countdown battery/gauge)
+// 'elapsed'   = starts at 0% empty & fills up to 100% (progress completed)
+const PROGRESS_DIRECTION = 'depletion';
 
 // DOM Elements
 const container = document.querySelector('.container');
@@ -43,10 +48,12 @@ const progressBarFill = document.getElementById('progress-bar-fill');
 let currentMode = 'pomodoro';
 let timeLeft = MODES.pomodoro.durationSeconds;
 let totalDuration = MODES.pomodoro.durationSeconds;
+let remainingMs = MODES.pomodoro.durationSeconds * 1000;
 let isRunning = false;
 let timerInterval = null;
 let endTime = null;
 let audioCtx = null;
+let completionTimeout = null;
 
 /**
  * Format total seconds into MM:SS string
@@ -62,25 +69,54 @@ function formatTime(totalSeconds) {
 }
 
 /**
- * Update the Clean Single Progress Bar width
- * @param {number} [ratio] - Exact continuous progress ratio (0 to 1)
+ * Calculate the progress ratio (0 to 1) based on remaining time and chosen direction
+ * @param {number} currentRemainingMs
+ * @param {number} totalDurationSec
+ * @returns {number} Ratio between 0 and 1
  */
-function updateProgressBar(ratio = (timeLeft / totalDuration)) {
-  if (!progressBarFill) return;
-  const safeRatio = Math.max(0, Math.min(1, ratio));
-  progressBarFill.style.width = `${safeRatio * 100}%`;
+function getProgressRatio(currentRemainingMs = remainingMs, totalDurationSec = totalDuration) {
+  const totalMs = totalDurationSec * 1000;
+  if (totalMs <= 0) return 0;
+  const clampedMs = Math.max(0, Math.min(totalMs, currentRemainingMs));
+  if (PROGRESS_DIRECTION === 'elapsed') {
+    return (totalMs - clampedMs) / totalMs;
+  }
+  // Depletion: starts at 1.0 (100%) and counts down to 0
+  return clampedMs / totalMs;
 }
 
 /**
- * Update the timer on the page and the browser tab title
- * @param {number} [exactRatio] - Optional sub-second continuous ratio
+ * Update the horizontal linear progress bar DOM element
+ * @param {number} [ratio] - Continuous ratio (0 to 1)
+ */
+function updateProgressBar(ratio) {
+  if (!progressBarFill) return;
+  const activeRatio = (ratio !== undefined) ? ratio : getProgressRatio();
+  const safePercent = Math.max(0, Math.min(100, activeRatio * 100));
+  progressBarFill.style.width = `${safePercent}%`;
+
+  const track = progressBarFill.parentElement;
+  if (track && track.getAttribute('role') === 'progressbar') {
+    track.setAttribute('aria-valuenow', Math.round(safePercent));
+  }
+}
+
+/**
+ * Update the timer text, status bar, document title, and progress bar
+ * @param {number} [exactRatio] - Sub-second continuous progress ratio (0 to 1)
  */
 function updateDisplay(exactRatio) {
   const formatted = formatTime(timeLeft);
-  timerDisplay.textContent = formatted;
+  if (timerDisplay) timerDisplay.textContent = formatted;
   if (collapsedTimer) collapsedTimer.textContent = formatted;
-  if (modeFullEl) modeFullEl.textContent = `// ${MODES[currentMode].shortName === 'POM' ? 'POMODORO' : (MODES[currentMode].shortName === 'SBR' ? 'SHORT BREAK' : 'LONG BREAK')}`;
-  if (modeShortEl) modeShortEl.textContent = `// ${MODES[currentMode].shortName}`;
+
+  const modeData = MODES[currentMode];
+  if (modeFullEl) {
+    modeFullEl.textContent = `// ${modeData.shortName === 'POM' ? 'POMODORO' : (modeData.shortName === 'SBR' ? 'SHORT BREAK' : 'LONG BREAK')}`;
+  }
+  if (modeShortEl) {
+    modeShortEl.textContent = `// ${modeData.shortName}`;
+  }
 
   if (termStatus) {
     if (isRunning) {
@@ -92,11 +128,11 @@ function updateDisplay(exactRatio) {
     }
   }
 
-  const ratio = (exactRatio !== undefined) ? exactRatio : (timeLeft / totalDuration);
+  const ratio = (exactRatio !== undefined) ? exactRatio : getProgressRatio();
   updateProgressBar(ratio);
 
   if (isRunning) {
-    document.title = `[ ${formatted} ] ${MODES[currentMode].shortName} // SYS`;
+    document.title = `[ ${formatted} ] ${modeData.shortName} // SYS`;
   } else {
     document.title = `[ ${formatted} ] POMODORO // SYS`;
   }
@@ -143,75 +179,6 @@ function playCompletionChime() {
 }
 
 /**
- * Start the countdown timer with drift-proof timestamp tracking
- */
-function startTimer() {
-  if (isRunning) return;
-
-  // Unlock AudioContext on first user interaction
-  try {
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    if (AudioContext && !audioCtx) {
-      audioCtx = new AudioContext();
-    }
-    if (audioCtx && audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
-  } catch (e) {
-    // Ignore audio initialization errors
-  }
-
-  isRunning = true;
-  startBtn.innerHTML = `<span class="btn-text-full">[ || PAUSE ]</span><span class="btn-text-short">PAUSE</span>`;
-  if (container) container.classList.add('timer-active');
-
-  // Calculate target finish timestamp
-  endTime = Date.now() + timeLeft * 1000;
-  updateDisplay();
-
-  if (timerInterval) clearInterval(timerInterval);
-
-  timerInterval = setInterval(() => {
-    const now = Date.now();
-    const msRemaining = Math.max(0, endTime - now);
-    const remainingSeconds = Math.ceil(msRemaining / 1000);
-
-    if (msRemaining <= 0) {
-      // Session Complete
-      timeLeft = 0;
-      updateDisplay(0);
-      pauseTimer();
-      playCompletionChime();
-
-      // Reset to mode's default duration
-      timeLeft = MODES[currentMode].durationSeconds;
-      totalDuration = MODES[currentMode].durationSeconds;
-      setTimeout(() => {
-        updateDisplay(1);
-      }, 1000);
-    } else {
-      timeLeft = remainingSeconds;
-      const exactRatio = msRemaining / (totalDuration * 1000);
-      updateDisplay(exactRatio);
-    }
-  }, 40); // 40ms interval for silky-smooth 25fps continuous bar depletion
-}
-
-/**
- * Pause the active timer
- */
-function pauseTimer() {
-  isRunning = false;
-  if (timerInterval) {
-    clearInterval(timerInterval);
-    timerInterval = null;
-  }
-  startBtn.innerHTML = `<span class="btn-text-full">[ > EXECUTE ]</span><span class="btn-text-short">START</span>`;
-  if (container) container.classList.remove('timer-active');
-  updateDisplay();
-}
-
-/**
  * Play a distinct tactile click / toggle sound for the Start / Pause button
  * @param {boolean} isStarting - True when starting countdown, false when pausing
  */
@@ -233,7 +200,7 @@ function playStartButtonSound(isStarting) {
     const gain = audioCtx.createGain();
 
     if (isStarting) {
-      // Resonant, energetic affirmative chime-pop for Start
+      // Resonant affirmative chime-pop for Start
       osc.type = 'triangle';
       osc.frequency.setValueAtTime(440, now);
       osc.frequency.exponentialRampToValueAtTime(780, now + 0.06);
@@ -267,25 +234,6 @@ function playStartButtonSound(isStarting) {
 }
 
 /**
- * Toggle Start / Pause state with spring bounce micro-interaction & sound
- */
-function toggleTimer() {
-  // Trigger tactile spring-bounce animation on button
-  startBtn.classList.remove('btn-spring-click');
-  // Trigger reflow to restart CSS animation cleanly
-  void startBtn.offsetWidth;
-  startBtn.classList.add('btn-spring-click');
-
-  if (isRunning) {
-    playStartButtonSound(false);
-    pauseTimer();
-  } else {
-    playStartButtonSound(true);
-    startTimer();
-  }
-}
-
-/**
  * Play a subtle, tactile UI click sound via Web Audio API (for ghost mode buttons)
  */
 function playClickSound() {
@@ -305,7 +253,6 @@ function playClickSound() {
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
 
-    // Crisp, subtle modern UI tap (pitch drop from 900Hz to 400Hz in 40ms)
     osc.type = 'sine';
     osc.frequency.setValueAtTime(900, now);
     osc.frequency.exponentialRampToValueAtTime(400, now + 0.04);
@@ -324,6 +271,108 @@ function playClickSound() {
 }
 
 /**
+ * Start the countdown timer with drift-proof timestamp tracking
+ */
+function startTimer() {
+  if (isRunning) return;
+
+  if (completionTimeout) {
+    clearTimeout(completionTimeout);
+    completionTimeout = null;
+  }
+
+  // Unlock AudioContext on first user interaction
+  try {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (AudioContext && !audioCtx) {
+      audioCtx = new AudioContext();
+    }
+    if (audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+  } catch (e) {
+    // Ignore audio initialization errors
+  }
+
+  isRunning = true;
+  if (startBtn) {
+    startBtn.innerHTML = `<span class="btn-text-full">[ || PAUSE ]</span><span class="btn-text-short">PAUSE</span>`;
+  }
+  if (container) container.classList.add('timer-active');
+
+  // Calculate target finish timestamp using remainingMs for sub-second continuity
+  endTime = Date.now() + remainingMs;
+  updateDisplay(getProgressRatio());
+
+  if (timerInterval) clearInterval(timerInterval);
+
+  timerInterval = setInterval(() => {
+    const now = Date.now();
+    remainingMs = Math.max(0, endTime - now);
+    timeLeft = Math.ceil(remainingMs / 1000);
+
+    if (remainingMs <= 0) {
+      // Session Complete
+      timeLeft = 0;
+      remainingMs = 0;
+      updateDisplay(PROGRESS_DIRECTION === 'depletion' ? 0 : 1);
+      pauseTimer();
+      playCompletionChime();
+
+      // Reset to mode default duration after completion notification
+      completionTimeout = setTimeout(() => {
+        remainingMs = MODES[currentMode].durationSeconds * 1000;
+        timeLeft = MODES[currentMode].durationSeconds;
+        totalDuration = MODES[currentMode].durationSeconds;
+        updateDisplay();
+        completionTimeout = null;
+      }, 1500);
+    } else {
+      updateDisplay(getProgressRatio());
+    }
+  }, 40); // 40ms interval for silky-smooth 25fps continuous bar updates
+}
+
+/**
+ * Pause the active timer
+ */
+function pauseTimer() {
+  isRunning = false;
+  if (timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  }
+  if (endTime) {
+    remainingMs = Math.max(0, endTime - Date.now());
+    timeLeft = Math.ceil(remainingMs / 1000);
+  }
+  if (startBtn) {
+    startBtn.innerHTML = `<span class="btn-text-full">[ > EXECUTE ]</span><span class="btn-text-short">START</span>`;
+  }
+  if (container) container.classList.remove('timer-active');
+  updateDisplay(getProgressRatio());
+}
+
+/**
+ * Toggle Start / Pause state with spring bounce micro-interaction & sound
+ */
+function toggleTimer() {
+  if (startBtn) {
+    startBtn.classList.remove('btn-spring-click');
+    void startBtn.offsetWidth; // Force reflow
+    startBtn.classList.add('btn-spring-click');
+  }
+
+  if (isRunning) {
+    playStartButtonSound(false);
+    pauseTimer();
+  } else {
+    playStartButtonSound(true);
+    startTimer();
+  }
+}
+
+/**
  * Switch active mode, reset countdown, update theme and timer display
  * @param {string} modeKey - 'pomodoro' | 'shortBreak' | 'longBreak'
  * @param {HTMLButtonElement} selectedBtn - The clicked ghost button element
@@ -331,6 +380,11 @@ function playClickSound() {
 function setMode(modeKey, selectedBtn) {
   const modeConfig = MODES[modeKey];
   if (!modeConfig) return;
+
+  if (completionTimeout) {
+    clearTimeout(completionTimeout);
+    completionTimeout = null;
+  }
 
   // Play auditory click feedback
   playClickSound();
@@ -341,16 +395,17 @@ function setMode(modeKey, selectedBtn) {
   currentMode = modeKey;
   timeLeft = modeConfig.durationSeconds;
   totalDuration = modeConfig.durationSeconds;
+  remainingMs = modeConfig.durationSeconds * 1000;
 
   // Update active ghost button styling
   modeButtons.forEach(btn => btn.classList.remove('active'));
-  selectedBtn.classList.add('active');
+  if (selectedBtn) selectedBtn.classList.add('active');
 
   // Morph background color smoothly via body theme class
   document.body.classList.remove('theme-pomodoro', 'theme-short-break', 'theme-long-break');
   document.body.classList.add(modeConfig.theme);
 
-  // Update timer display & progress ring
+  // Update timer display & progress bar
   updateDisplay();
 }
 
@@ -364,18 +419,19 @@ function toggleCollapse() {
 }
 
 // Event Listeners
-pomodoroBtn.addEventListener('click', () => setMode('pomodoro', pomodoroBtn));
-shortBreakBtn.addEventListener('click', () => setMode('shortBreak', shortBreakBtn));
-longBreakBtn.addEventListener('click', () => setMode('longBreak', longBreakBtn));
-startBtn.addEventListener('click', toggleTimer);
+if (pomodoroBtn) pomodoroBtn.addEventListener('click', () => setMode('pomodoro', pomodoroBtn));
+if (shortBreakBtn) shortBreakBtn.addEventListener('click', () => setMode('shortBreak', shortBreakBtn));
+if (longBreakBtn) longBreakBtn.addEventListener('click', () => setMode('longBreak', longBreakBtn));
+if (startBtn) startBtn.addEventListener('click', toggleTimer);
 
 if (collapseBtn) collapseBtn.addEventListener('click', toggleCollapse);
 if (collapsedView) collapsedView.addEventListener('click', toggleCollapse);
 
-startBtn.addEventListener('animationend', () => {
-  startBtn.classList.remove('btn-spring-click');
-});
+if (startBtn) {
+  startBtn.addEventListener('animationend', () => {
+    startBtn.classList.remove('btn-spring-click');
+  });
+}
 
 // Initial display setup
 updateDisplay();
-
