@@ -435,3 +435,22 @@ if (startBtn) {
 
 // Initial display setup
 updateDisplay();
+
+// Global Keyboard Shortcuts (Space: Start/Pause, 1-3: Modes, Esc: Zen View)
+window.addEventListener('keydown', (e) => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+  if (e.code === 'Space') {
+    e.preventDefault();
+    toggleTimer();
+  } else if (e.key === '1') {
+    if (pomodoroBtn) setMode('pomodoro', pomodoroBtn);
+  } else if (e.key === '2') {
+    if (shortBreakBtn) setMode('shortBreak', shortBreakBtn);
+  } else if (e.key === '3') {
+    if (longBreakBtn) setMode('longBreak', longBreakBtn);
+  } else if (e.key === 'Escape') {
+    toggleCollapse();
+  }
+});
+

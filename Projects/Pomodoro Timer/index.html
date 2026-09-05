@@ -3,89 +3,168 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>00:10 · Monochrome Glass</title>
+  <title>MONOFLOW · Silence The Noise</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=16">
+  <link rel="stylesheet" href="style.css?v=20">
 </head>
 <body class="theme-pomodoro">
 
-  <main class="container" id="main-container">
-    <!-- Full Expanded View -->
-    <div class="expanded-view" id="expanded-view">
-      
-      <!-- Frosted Glass Monolithic Header -->
-      <div class="terminal-header">
-        <span class="term-tag">
-          <span class="text-full">✦ MONO </span>
-          <span class="text-short">✦ MONO</span>
-        </span>
-        <span class="term-dots">· · · · · ·</span>
-        <span class="term-meta">NOIR </span>
+  <!-- Minimal Glass Header Navigation -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand">
+        <span class="brand-spark">✦</span>
+        <span class="brand-name">MONOFLOW</span>
+        <span class="brand-badge">OS 01</span>
       </div>
-
-      <!-- Mode Selector Blocks -->
-      <div class="modes">
-        <button type="button" class="mode-btn active" id="pomodoro-btn">
-          <span class="btn-text-full">DEEP FLOW</span>
-          <span class="btn-text-short">FLOW</span>
-        </button>
-        <button type="button" class="mode-btn" id="short-break-btn">
-          <span class="btn-text-full">QUICK REST</span>
-          <span class="btn-text-short">REST</span>
-        </button>
-        <button type="button" class="mode-btn" id="long-break-btn">
-          <span class="btn-text-full">DEEP RESET</span>
-          <span class="btn-text-short">RESET</span>
-        </button>
-      </div>
-
-      <!-- Timer Display & Glowing Progress Bar -->
-      <div class="timer-box-frame" id="timer-box-frame">
-        <div id="timer">00:10</div>
-        <div class="progress-bar-track" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" aria-label="Timer Progress">
-          <div class="progress-bar-fill" id="progress-bar-fill"></div>
-        </div>
-      </div>
-
-      <!-- Action Button -->
-      <button type="button" id="start-btn">
-        <span class="btn-text-full">ENTER FLOW STATE</span>
-        <span class="btn-text-short">ENTER FLOW</span>
-      </button>
-
-      <!-- Ambient Glass Footer & Status -->
-      <div class="terminal-footer">
-        <div class="term-barcode" aria-hidden="true"></div>
-        <div class="term-status" id="term-status">
-          <span class="status-full">STATE: READY · 00:10</span>
-          <span class="status-short">READY · 00:10</span>
+      <div class="header-right">
+        <a href="#timer-section" class="nav-cta-link">POMODORO</a>
+        <div class="header-status">
+          <span class="status-pulse"></span>
+          <span class="status-label">SYSTEM ONLINE</span>
         </div>
       </div>
     </div>
+  </header>
 
-    <!-- Minimal Collapse / Expand Button (Bottom-Center Aligned) -->
-    <button type="button" class="collapse-btn" id="collapse-btn" aria-label="Toggle minimal view" title="Toggle Minimal View">
-      <svg class="collapse-icon-expanded" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="4 14 12 6 20 14"></polyline>
-      </svg>
-    </button>
+  <!-- 1. Full-Height Minimalist Hero Screen -->
+  <section class="hero-screen">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span class="badge-text">Flow</span>
+      </div>
 
-    <!-- Ultra-Minimal Collapsed Zen Pill View -->
-    <div class="collapsed-view" id="collapsed-view" role="button" tabindex="0" title="Click to expand">
-      <span class="collapsed-dot"></span>
-      <span class="collapsed-timer" id="collapsed-timer">00:10</span>
-      <span class="collapsed-mode" id="collapsed-mode">
-        <span class="mode-full">DEEP FLOW</span>
-        <span class="mode-short">FLOW</span>
+      <h1 class="hero-title">
+        Silence the noise.<br>
+        <span class="hero-gradient-text">Master the flow.</span>
+      </h1>
+
+      <p class="hero-description">
+        A distraction-free sanctuary engineered for deep cognitive endurance, rhythmic interval pacing, and effortless focus.
+      </p>
+
+      <!-- Key Value Metric Pills -->
+      <div class="hero-pills">
+        <div class="hero-pill">
+          <span class="pill-dot">✦</span>
+          <span>25m Focus Rhythm</span>
+        </div>
+        <div class="hero-pill">
+          <span class="pill-dot">✦</span>
+          <span>Smoked Obsidian Glass</span>
+        </div>
+        <div class="hero-pill">
+          <span class="pill-dot">✦</span>
+          <span>Zero Sensory Fatigue</span>
+        </div>
+      </div>
+
+      <!-- Action Button to Transition to Clean Timer Environment -->
+      <div class="hero-actions">
+        <a href="#timer-section" class="hero-cta-btn" id="hero-cta-btn">
+          <span>ENTER WORKSPACE</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Gentle Scroll Indicator -->
+    <a href="#timer-section" class="scroll-indicator" aria-label="Scroll to timer environment">
+      <span class="scroll-mouse">
+        <span class="scroll-wheel"></span>
       </span>
-      <svg class="expand-icon" viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="6 9 12 15 18 9"></polyline>
-      </svg>
-    </div>
-  </main>
+      <span class="scroll-text">FOCUS ENVIRONMENT</span>
+    </a>
+  </section>
 
-  <script src="script.js?v=10"></script>
+  <!-- 2. Clean Dedicated Timer Environment (Below Hero Screen) -->
+  <section class="timer-section" id="timer-section">
+    <div class="timer-ambient-glow" aria-hidden="true"></div>
+
+    <div class="timer-container-wrapper">
+      <main class="container" id="main-container">
+        <!-- Full Expanded View -->
+        <div class="expanded-view" id="expanded-view">
+          
+          <!-- Frosted Glass Monolithic Header -->
+          <div class="terminal-header">
+            <span class="term-tag">
+              <span class="text-full">✦ MONOFLOW</span>
+              <span class="text-short">✦ MONO</span>
+            </span>
+            <span class="term-dots">· · · · · ·</span>
+            <span class="term-meta">NOIR EDITION</span>
+          </div>
+
+          <!-- Mode Selector Blocks -->
+          <div class="modes">
+            <button type="button" class="mode-btn active" id="pomodoro-btn">
+              <span class="btn-text-full">DEEP FLOW</span>
+              <span class="btn-text-short">FLOW</span>
+            </button>
+            <button type="button" class="mode-btn" id="short-break-btn">
+              <span class="btn-text-full">QUICK REST</span>
+              <span class="btn-text-short">REST</span>
+            </button>
+            <button type="button" class="mode-btn" id="long-break-btn">
+              <span class="btn-text-full">DEEP RESET</span>
+              <span class="btn-text-short">RESET</span>
+            </button>
+          </div>
+
+          <!-- Timer Display & Glowing Progress Bar -->
+          <div class="timer-box-frame" id="timer-box-frame">
+            <div id="timer">00:10</div>
+            <div class="progress-bar-track" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" aria-label="Timer Progress">
+              <div class="progress-bar-fill" id="progress-bar-fill"></div>
+            </div>
+          </div>
+
+          <!-- Action Button -->
+          <button type="button" id="start-btn">
+            <span class="btn-text-full">ENTER FLOW STATE</span>
+            <span class="btn-text-short">ENTER FLOW</span>
+          </button>
+
+          <!-- Ambient Glass Footer & Status -->
+          <div class="terminal-footer">
+            <div class="term-barcode" aria-hidden="true"></div>
+            <div class="term-status" id="term-status">
+              <span class="status-full">STATE: READY · 00:10</span>
+              <span class="status-short">READY · 00:10</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Minimal Collapse / Expand Button (Bottom-Center Aligned) -->
+        <button type="button" class="collapse-btn" id="collapse-btn" aria-label="Toggle minimal view" title="Toggle Minimal View">
+          <svg class="collapse-icon-expanded" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4 14 12 6 20 14"></polyline>
+          </svg>
+        </button>
+
+        <!-- Ultra-Minimal Collapsed Zen Pill View -->
+        <div class="collapsed-view" id="collapsed-view" role="button" tabindex="0" title="Click to expand">
+          <span class="collapsed-dot"></span>
+          <span class="collapsed-timer" id="collapsed-timer">00:10</span>
+          <span class="collapsed-mode" id="collapsed-mode">
+            <span class="mode-full">DEEP FLOW</span>
+            <span class="mode-short">FLOW</span>
+          </span>
+          <svg class="expand-icon" viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+      </main>
+    </div>
+  </section>
+
+  <script src="script.js?v=14"></script>
 </body>
 </html>
