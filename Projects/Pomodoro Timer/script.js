@@ -1,22 +1,22 @@
 // Timer Mode Configurations (Temporarily set to 10s for testing)
 const MODES = {
   pomodoro: {
-    name: '[ 01 > FOCUS ]',
-    shortName: 'POM',
+    name: 'DEEP FLOW',
+    shortName: 'FLOW',
     theme: 'theme-pomodoro',
     durationSeconds: 10,
     defaultText: '00:10'
   },
   shortBreak: {
-    name: '[ 02 > SHORT ]',
-    shortName: 'SBR',
+    name: 'QUICK REST',
+    shortName: 'REST',
     theme: 'theme-short-break',
     durationSeconds: 10,
     defaultText: '00:10'
   },
   longBreak: {
-    name: '[ 03 > LONG ]',
-    shortName: 'LBR',
+    name: 'DEEP RESET',
+    shortName: 'RESET',
     theme: 'theme-long-break',
     durationSeconds: 10,
     defaultText: '00:10'
@@ -112,19 +112,19 @@ function updateDisplay(exactRatio) {
 
   const modeData = MODES[currentMode];
   if (modeFullEl) {
-    modeFullEl.textContent = `// ${modeData.shortName === 'POM' ? 'POMODORO' : (modeData.shortName === 'SBR' ? 'SHORT BREAK' : 'LONG BREAK')}`;
+    modeFullEl.textContent = modeData.name;
   }
   if (modeShortEl) {
-    modeShortEl.textContent = `// ${modeData.shortName}`;
+    modeShortEl.textContent = modeData.shortName;
   }
 
   if (termStatus) {
     if (isRunning) {
-      termStatus.innerHTML = `<span class="status-full">STATUS: RUNNING // ${formatted}</span><span class="status-short">RUNNING // ${formatted}</span>`;
+      termStatus.innerHTML = `<span class="status-full">STATE: IN FLOW · ${formatted}</span><span class="status-short">IN FLOW · ${formatted}</span>`;
     } else if (timeLeft === 0) {
-      termStatus.innerHTML = `<span class="status-full">STATUS: COMPLETE // READY</span><span class="status-short">COMPLETE</span>`;
+      termStatus.innerHTML = `<span class="status-full">STATE: COMPLETE · BREATHE</span><span class="status-short">COMPLETE</span>`;
     } else {
-      termStatus.innerHTML = `<span class="status-full">STATUS: STANDBY // ${formatted}</span><span class="status-short">STANDBY // ${formatted}</span>`;
+      termStatus.innerHTML = `<span class="status-full">STATE: READY · ${formatted}</span><span class="status-short">READY · ${formatted}</span>`;
     }
   }
 
@@ -132,9 +132,9 @@ function updateDisplay(exactRatio) {
   updateProgressBar(ratio);
 
   if (isRunning) {
-    document.title = `[ ${formatted} ] ${modeData.shortName} // SYS`;
+    document.title = `${formatted} · ${modeData.name} [MONO]`;
   } else {
-    document.title = `[ ${formatted} ] POMODORO // SYS`;
+    document.title = `${formatted} · Monochrome Glass`;
   }
 }
 
@@ -296,7 +296,7 @@ function startTimer() {
 
   isRunning = true;
   if (startBtn) {
-    startBtn.innerHTML = `<span class="btn-text-full">[ || PAUSE ]</span><span class="btn-text-short">PAUSE</span>`;
+    startBtn.innerHTML = `<span class="btn-text-full">PAUSE FLOW</span><span class="btn-text-short">PAUSE</span>`;
   }
   if (container) container.classList.add('timer-active');
 
@@ -347,7 +347,7 @@ function pauseTimer() {
     timeLeft = Math.ceil(remainingMs / 1000);
   }
   if (startBtn) {
-    startBtn.innerHTML = `<span class="btn-text-full">[ > EXECUTE ]</span><span class="btn-text-short">START</span>`;
+    startBtn.innerHTML = `<span class="btn-text-full">ENTER FLOW STATE</span><span class="btn-text-short">ENTER FLOW</span>`;
   }
   if (container) container.classList.remove('timer-active');
   updateDisplay(getProgressRatio());

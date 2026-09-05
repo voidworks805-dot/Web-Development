@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>[ 00:10 ] POMODORO // SYS</title>
+  <title>00:10 · Monochrome Glass</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=5">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=16">
 </head>
 <body class="theme-pomodoro">
 
@@ -15,33 +15,33 @@
     <!-- Full Expanded View -->
     <div class="expanded-view" id="expanded-view">
       
-      <!-- Terminal ASCII Header Meta -->
+      <!-- Frosted Glass Monolithic Header -->
       <div class="terminal-header">
         <span class="term-tag">
-          <span class="text-full">// 01 > TIMER_SYS</span>
-          <span class="text-short">// TIMER_SYS</span>
+          <span class="text-full">✦ MONO </span>
+          <span class="text-short">✦ MONO</span>
         </span>
-        <span class="term-dots">. . . . . .</span>
-        <span class="term-meta">[ 2026 ]</span>
+        <span class="term-dots">· · · · · ·</span>
+        <span class="term-meta">NOIR </span>
       </div>
 
       <!-- Mode Selector Blocks -->
       <div class="modes">
         <button type="button" class="mode-btn active" id="pomodoro-btn">
-          <span class="btn-text-full">[ 01 > FOCUS ]</span>
-          <span class="btn-text-short">01 FOCUS</span>
+          <span class="btn-text-full">DEEP FLOW</span>
+          <span class="btn-text-short">FLOW</span>
         </button>
         <button type="button" class="mode-btn" id="short-break-btn">
-          <span class="btn-text-full">[ 02 > SHORT ]</span>
-          <span class="btn-text-short">02 SHORT</span>
+          <span class="btn-text-full">QUICK REST</span>
+          <span class="btn-text-short">REST</span>
         </button>
         <button type="button" class="mode-btn" id="long-break-btn">
-          <span class="btn-text-full">[ 03 > LONG ]</span>
-          <span class="btn-text-short">03 LONG</span>
+          <span class="btn-text-full">DEEP RESET</span>
+          <span class="btn-text-short">RESET</span>
         </button>
       </div>
 
-      <!-- Timer Display & Single Progress Bar -->
+      <!-- Timer Display & Glowing Progress Bar -->
       <div class="timer-box-frame" id="timer-box-frame">
         <div id="timer">00:10</div>
         <div class="progress-bar-track" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" aria-label="Timer Progress">
@@ -49,18 +49,18 @@
         </div>
       </div>
 
-      <!-- Action Mechanical Button -->
+      <!-- Action Button -->
       <button type="button" id="start-btn">
-        <span class="btn-text-full">[ > EXECUTE ]</span>
-        <span class="btn-text-short">START</span>
+        <span class="btn-text-full">ENTER FLOW STATE</span>
+        <span class="btn-text-short">ENTER FLOW</span>
       </button>
 
-      <!-- Terminal ASCII Footer Barcode & Status -->
+      <!-- Ambient Glass Footer & Status -->
       <div class="terminal-footer">
-        <div class="term-barcode" aria-hidden="true">||||||||||||||||||||||||||||||</div>
+        <div class="term-barcode" aria-hidden="true"></div>
         <div class="term-status" id="term-status">
-          <span class="status-full">STATUS: STANDBY // READY</span>
-          <span class="status-short">READY // 00:10</span>
+          <span class="status-full">STATE: READY · 00:10</span>
+          <span class="status-short">READY · 00:10</span>
         </div>
       </div>
     </div>
@@ -77,8 +77,8 @@
       <span class="collapsed-dot"></span>
       <span class="collapsed-timer" id="collapsed-timer">00:10</span>
       <span class="collapsed-mode" id="collapsed-mode">
-        <span class="mode-full">// POMODORO</span>
-        <span class="mode-short">// POM</span>
+        <span class="mode-full">DEEP FLOW</span>
+        <span class="mode-short">FLOW</span>
       </span>
       <svg class="expand-icon" viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="6 9 12 15 18 9"></polyline>
@@ -86,6 +86,6 @@
     </div>
   </main>
 
-  <script src="script.js?v=5"></script>
+  <script src="script.js?v=10"></script>
 </body>
 </html>

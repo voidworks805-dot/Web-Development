@@ -5,80 +5,94 @@
 }
 
 :root {
-  --font-family: 'Space Mono', monospace, ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Space Mono', monospace;
   --transition-smooth: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ----------------------------------------------------
-   Brutalist Terminal Color Palettes (Preserved Exact Colors)
+   Unified Obsidian Smoked Glass Palette (Long Break Palette)
+   Deep midnight void with ultra-sheer frosted glass across all modes
 ----------------------------------------------------- */
 
-/* Focus / Pomodoro: Electric Lagoon Blue & Deep Midnight Slate */
-body.theme-pomodoro {
-  --bg-color: #0A1118;
-  --card-bg: rgba(14, 20, 26, 0.94);
-  --card-border: #0EA5E9;
-  --card-shadow: 6px 6px 0px rgba(0, 0, 0, 0.85), 0 0 24px -4px rgba(14, 165, 233, 0.2);
-  --text-main: #0EA5E9;
-  --text-muted: #627A8C;
-  --ghost-hover-bg: rgba(14, 165, 233, 0.12);
-  --btn-active-bg: #0EA5E9;
-  --btn-active-text: #000000;
-  --start-btn-bg: #0EA5E9;
-  --start-btn-text: #000000;
-  --start-btn-hover: #38BDF8;
-}
-
-/* Short Break: Sea-Glass Teal & Deep Teal Onyx */
-body.theme-short-break {
-  --bg-color: #0A1313;
-  --card-bg: rgba(14, 22, 22, 0.94);
-  --card-border: #14B8A6;
-  --card-shadow: 6px 6px 0px rgba(0, 0, 0, 0.85), 0 0 24px -4px rgba(20, 184, 166, 0.2);
-  --text-main: #14B8A6;
-  --text-muted: #648280;
-  --ghost-hover-bg: rgba(20, 184, 166, 0.12);
-  --btn-active-bg: #14B8A6;
-  --btn-active-text: #000000;
-  --start-btn-bg: #14B8A6;
-  --start-btn-text: #000000;
-  --start-btn-hover: #2DD4BF;
-}
-
-/* Long Break: Emerald Sage & Deep Forest Charcoal */
+body.theme-pomodoro,
+body.theme-short-break,
 body.theme-long-break {
-  --bg-color: #0D1311;
-  --card-bg: rgba(14, 22, 19, 0.94);
-  --card-border: #10B981;
-  --card-shadow: 6px 6px 0px rgba(0, 0, 0, 0.85), 0 0 24px -4px rgba(16, 185, 129, 0.2);
-  --text-main: #10B981;
-  --text-muted: #658579;
-  --ghost-hover-bg: rgba(16, 185, 129, 0.12);
-  --btn-active-bg: #10B981;
-  --btn-active-text: #000000;
-  --start-btn-bg: #10B981;
-  --start-btn-text: #000000;
-  --start-btn-hover: #34D399;
+  --bg-color: #030305;
+  --orb-1: rgba(255, 255, 255, 0.07);
+  --orb-2: rgba(200, 205, 215, 0.04);
+  --orb-3: rgba(220, 225, 235, 0.02);
+  --card-bg: rgba(255, 255, 255, 0.035);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --card-shadow: 0 36px 80px -16px rgba(0, 0, 0, 0.95);
+  --card-inner-top: rgba(255, 255, 255, 0.18);
+  --card-inner-bottom: rgba(0, 0, 0, 0.4);
+  --text-main: #E4E4E7;
+  --text-muted: rgba(255, 255, 255, 0.38);
+  --header-border: rgba(255, 255, 255, 0.08);
+  --well-bg: rgba(0, 0, 0, 0.35);
+  --well-border: rgba(255, 255, 255, 0.08);
+  --well-inner-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5);
+  --track-bg: rgba(255, 255, 255, 0.05);
+  --track-border: rgba(255, 255, 255, 0.09);
+  --progress-gradient: linear-gradient(90deg, #3F3F46, #A1A1AA);
+  --accent-glow: rgba(255, 255, 255, 0.18);
+  --timer-shadow: 0 0 25px rgba(255, 255, 255, 0.12);
+  --modes-tray-bg: rgba(0, 0, 0, 0.35);
+  --modes-tray-border: rgba(255, 255, 255, 0.07);
+  --mode-btn-color: rgba(255, 255, 255, 0.4);
+  --mode-btn-hover-bg: rgba(255, 255, 255, 0.05);
+  --mode-btn-hover-color: #E4E4E7;
+  --mode-btn-active-bg: rgba(255, 255, 255, 0.12);
+  --mode-btn-active-border: rgba(255, 255, 255, 0.24);
+  --mode-btn-active-color: #FFFFFF;
+  --mode-btn-active-shadow: 0 4px 16px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  --btn-bg: rgba(255, 255, 255, 0.08);
+  --btn-border: rgba(255, 255, 255, 0.18);
+  --btn-color: #E4E4E7;
+  --btn-hover-bg: rgba(255, 255, 255, 0.15);
+  --btn-hover-border: rgba(255, 255, 255, 0.3);
+  --btn-hover-shadow: 0 16px 40px -4px rgba(0, 0, 0, 0.7);
+  --btn-active-shadow: 0 6px 20px -2px rgba(0, 0, 0, 0.7);
+  --collapse-btn-bg: rgba(255, 255, 255, 0.05);
+  --collapse-btn-border: rgba(255, 255, 255, 0.1);
+  --collapse-btn-color: rgba(255, 255, 255, 0.35);
+  --collapse-btn-hover-bg: rgba(255, 255, 255, 0.12);
+  --collapse-btn-hover-color: #E4E4E7;
+  --dot-color: #A1A1AA;
+  --dot-glow: rgba(255, 255, 255, 0.2);
 }
 
 /* ----------------------------------------------------
-   Base Layout & Animated Background
+   Atmospheric Layered Aura Backdrop
 ----------------------------------------------------- */
 
 body {
-  font-family: var(--font-family);
+  font-family: var(--font-display);
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(at 10% 15%, var(--orb-1) 0px, transparent 48%),
+    radial-gradient(at 88% 22%, var(--orb-2) 0px, transparent 46%),
+    radial-gradient(at 50% 85%, var(--orb-3) 0px, transparent 52%),
+    radial-gradient(at 85% 85%, var(--orb-1) 0px, transparent 40%);
+  background-attachment: fixed;
+  background-size: cover;
   color: var(--text-main);
-  transition: background-color var(--transition-smooth), color var(--transition-smooth);
+  transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              color 0.4s ease;
   padding: 1.5rem;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-/* Brutalist Technical Container */
+/* ----------------------------------------------------
+   Heavy Frosted Glass Monolithic Container
+----------------------------------------------------- */
+
 .container {
   position: relative;
   display: flex;
@@ -86,15 +100,18 @@ body {
   align-items: center;
   justify-content: center;
   gap: 1.6rem;
-  background-color: var(--card-bg);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 2px solid var(--card-border);
-  box-shadow: var(--card-shadow);
+  background: var(--card-bg);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid var(--card-border);
+  box-shadow: 
+    var(--card-shadow),
+    inset 0 1px 1px 0 var(--card-inner-top),
+    inset 0 -1px 1px 0 var(--card-inner-bottom);
   padding: 34px 38px 48px 38px;
   width: 100%;
   max-width: 480px;
-  border-radius: 8px;
+  border-radius: 28px;
   transition: max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
               border-radius 0.4s cubic-bezier(0.4, 0, 0.2, 1),
@@ -104,17 +121,16 @@ body {
               transform 0.2s ease;
 }
 
-/* Minimal Collapse Trigger Button (Permanent Bottom-Center Alignment) */
+/* Minimal Collapse Trigger Button */
 .collapse-btn {
   position: absolute;
-  bottom: 12px;
+  bottom: 8px;
   left: 50%;
   transform: translateX(-50%);
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: var(--text-muted);
-  padding: 5px 8px;
-  border-radius: 4px;
+  border: none;
+  color: var(--collapse-btn-color);
+  padding: 6px 10px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -124,10 +140,9 @@ body {
 }
 
 .collapse-btn:hover {
-  color: var(--text-main);
-  background: rgba(255, 255, 255, 0.08);
-  border-color: var(--btn-active-bg);
-  transform: translateX(-50%) scale(1.1);
+  color: var(--collapse-btn-hover-color);
+  background: transparent;
+  transform: translateX(-50%) scale(1.15);
 }
 
 .collapse-btn:active {
@@ -145,7 +160,7 @@ body {
   transition: opacity 0.3s ease;
 }
 
-/* Terminal Header Metadata */
+/* Frosted Spatial Header */
 .terminal-header {
   display: flex;
   justify-content: space-between;
@@ -153,24 +168,30 @@ body {
   width: 100%;
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--text-muted);
-  padding-bottom: 10px;
-  border-bottom: 1px dashed rgba(255, 255, 255, 0.14);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--header-border);
   gap: 0.4rem;
   white-space: nowrap;
+  transition: border-color var(--transition-smooth);
 }
 
 .term-tag {
   color: var(--text-main);
+  font-weight: 700;
   flex-shrink: 0;
+  letter-spacing: 0.08em;
+  transition: color var(--transition-smooth);
 }
 
 .term-dots {
   flex: 1;
   text-align: center;
-  letter-spacing: 0.25em;
-  opacity: 0.45;
+  letter-spacing: 0.4em;
+  color: var(--text-muted);
+  opacity: 0.5;
   overflow: hidden;
   text-overflow: clip;
   white-space: nowrap;
@@ -179,48 +200,212 @@ body {
 
 .term-meta {
   color: var(--text-muted);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  font-weight: 700;
   flex-shrink: 0;
 }
 
-/* Terminal Footer Barcode & Status */
+/* Floating Glass Mode Selector Capsule Bar */
+.modes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  background: var(--modes-tray-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--modes-tray-border);
+  padding: 5px;
+  border-radius: 16px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all var(--transition-smooth);
+}
+
+.mode-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: transparent;
+  color: var(--mode-btn-color);
+  border: 1px solid transparent;
+  font-family: inherit;
+  font-size: clamp(0.72rem, 1.8vw, 0.78rem);
+  font-weight: 700;
+  padding: 9px 6px;
+  cursor: pointer;
+  border-radius: 12px;
+  white-space: nowrap;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mode-btn:hover:not(.active) {
+  background: var(--mode-btn-hover-bg);
+  color: var(--mode-btn-hover-color);
+}
+
+.mode-btn.active {
+  background: var(--mode-btn-active-bg);
+  color: var(--mode-btn-active-color);
+  border-color: var(--mode-btn-active-border);
+  box-shadow: var(--mode-btn-active-shadow);
+}
+
+/* ----------------------------------------------------
+   Timer Display & Glass Well
+----------------------------------------------------- */
+
+.timer-box-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background: var(--well-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--well-border);
+  border-radius: 22px;
+  padding: 24px 20px 22px 20px;
+  gap: 1.25rem;
+  box-shadow: 
+    var(--well-inner-shadow),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  transition: all var(--transition-smooth);
+}
+
+#timer {
+  font-family: var(--font-display);
+  font-size: 5.4rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+  line-height: 0.95;
+  user-select: none;
+  text-align: center;
+  text-shadow: var(--timer-shadow);
+  transition: color var(--transition-smooth), text-shadow var(--transition-smooth);
+}
+
+/* Luminous Fluid Glass Progress Bar */
+.progress-bar-track {
+  width: 100%;
+  height: 8px;
+  background: var(--track-bg);
+  border: 1px solid var(--track-border);
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.15);
+  position: relative;
+  transition: all var(--transition-smooth);
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 100%;
+  background: var(--progress-gradient);
+  border-radius: 999px;
+  box-shadow: 0 0 16px var(--accent-glow);
+  transition: background var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+/* ----------------------------------------------------
+   Primary Action Button
+----------------------------------------------------- */
+
+#start-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 16px;
+  padding: 14px 38px;
+  min-width: 220px;
+  max-width: 100%;
+  cursor: pointer;
+  background: var(--btn-bg);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  color: var(--btn-color);
+  border: 1px solid var(--btn-border);
+  box-shadow: var(--card-shadow);
+  transition: transform 0.15s ease,
+              box-shadow 0.2s ease,
+              background-color var(--transition-smooth),
+              border-color var(--transition-smooth),
+              color var(--transition-smooth);
+  will-change: transform, box-shadow;
+  white-space: nowrap;
+}
+
+#start-btn:hover {
+  background: var(--btn-hover-bg);
+  border-color: var(--btn-hover-border);
+  transform: translateY(-2px);
+  box-shadow: var(--btn-hover-shadow);
+}
+
+#start-btn:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: var(--btn-active-shadow);
+}
+
+/* Ambient Glass Footer & Status */
 .terminal-footer {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
   width: 100%;
-  padding-top: 12px;
-  border-top: 1px dashed rgba(255, 255, 255, 0.14);
+  padding-top: 14px;
+  border-top: 1px solid var(--header-border);
   margin-top: -2px;
+  transition: border-color var(--transition-smooth);
 }
 
 .term-barcode {
-  font-size: 0.7rem;
-  letter-spacing: -0.1em;
-  color: var(--btn-active-bg);
-  opacity: 0.75;
-  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
   overflow: hidden;
   white-space: nowrap;
   width: 100%;
   text-align: center;
   user-select: none;
+  transition: color var(--transition-smooth);
 }
 
 .term-status {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  color: var(--text-main);
   text-transform: uppercase;
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 100%;
+  transition: color var(--transition-smooth);
 }
 
-/* Collapsed Mini Zen Pill View */
+/* ----------------------------------------------------
+   Collapsed Floating Zen Glass Capsule View
+----------------------------------------------------- */
+
 .collapsed-view {
   display: none;
   align-items: center;
@@ -234,30 +419,34 @@ body {
 }
 
 .collapsed-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 2px;
-  background-color: var(--btn-active-bg);
-  box-shadow: 0 0 10px var(--btn-active-bg);
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--dot-color);
+  box-shadow: 0 0 12px var(--dot-glow);
   flex-shrink: 0;
+  transition: background 0.4s ease, box-shadow 0.4s ease;
 }
 
 .collapsed-timer {
-  font-size: 1.22rem;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 800;
   color: var(--text-main);
   letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
   line-height: 1;
+  transition: color var(--transition-smooth);
 }
 
 .collapsed-mode {
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   font-weight: 700;
   color: var(--text-muted);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   white-space: nowrap;
+  transition: color var(--transition-smooth);
 }
 
 .mode-short {
@@ -277,16 +466,20 @@ body {
 /* Collapsed State Transformations */
 .container.is-collapsed {
   max-width: 255px;
-  padding: 10px 18px;
-  border-radius: 4px;
+  padding: 12px 20px;
+  border-radius: 999px;
   gap: 0;
   cursor: pointer;
-  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.9), 0 0 16px -2px var(--btn-active-bg);
+  box-shadow: 
+    var(--card-shadow),
+    inset 0 1px 1px var(--card-inner-top);
 }
 
 .container.is-collapsed:hover {
-  transform: translate(-1px, -1px);
-  box-shadow: 5px 5px 0px rgba(0, 0, 0, 0.95), 0 0 22px -2px var(--btn-active-bg);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 24px 50px -10px var(--accent-glow),
+    inset 0 1px 1px rgba(255, 255, 255, 0.45);
 }
 
 .container.is-collapsed .collapse-btn,
@@ -302,151 +495,6 @@ body {
 .container.is-collapsed:hover .expand-icon {
   transform: translateY(2px);
   color: var(--text-main);
-}
-
-/* ----------------------------------------------------
-   Mode Switcher Ghost Buttons (Terminal Selectors)
------------------------------------------------------ */
-
-.modes {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
-  gap: 0.35rem;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 5px;
-  border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all var(--transition-smooth);
-}
-
-.mode-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background-color: transparent;
-  color: var(--text-muted);
-  border: 1px solid transparent;
-  font-family: inherit;
-  font-size: clamp(0.72rem, 1.8vw, 0.78rem);
-  font-weight: 700;
-  padding: 8px 4px;
-  cursor: pointer;
-  border-radius: 2px;
-  white-space: nowrap;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  transition: all 0.1s steps(2);
-}
-
-.mode-btn:hover:not(.active) {
-  background-color: var(--ghost-hover-bg);
-  color: #FFFFFF;
-  border-color: rgba(255, 255, 255, 0.15);
-}
-
-.mode-btn.active {
-  background-color: var(--btn-active-bg);
-  color: #000000;
-  border-color: var(--btn-active-bg);
-  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.9);
-}
-
-/* ----------------------------------------------------
-   Timer Display & Clean Single Progress Bar
------------------------------------------------------ */
-
-.timer-box-frame {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.55);
-  border: 1px solid var(--card-border);
-  border-radius: 4px;
-  padding: 24px 20px 20px 20px;
-  gap: 1.2rem;
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
-  transition: border-color var(--transition-smooth);
-}
-
-#timer {
-  font-family: inherit;
-  font-size: 4.5rem;
-  font-weight: 700;
-  color: var(--text-main);
-  letter-spacing: -0.03em;
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
-  user-select: none;
-  text-align: center;
-  transition: color var(--transition-smooth);
-}
-
-/* Simple Single Progress Bar Track & Fill */
-.progress-bar-track {
-  width: 100%;
-  height: 8px;
-  background-color: rgba(0, 0, 0, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.85);
-  position: relative;
-}
-
-.progress-bar-fill {
-  height: 100%;
-  width: 100%;
-  background-color: var(--btn-active-bg);
-  box-shadow: 0 0 8px var(--btn-active-bg);
-  border-radius: 2px;
-  transition: background-color var(--transition-smooth);
-}
-
-/* ----------------------------------------------------
-   Start / Action Mechanical Brutalist Button
------------------------------------------------------ */
-
-#start-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: inherit;
-  font-size: 1.08rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  border-radius: 4px;
-  padding: 13px 36px;
-  min-width: 220px;
-  max-width: 100%;
-  cursor: pointer;
-  background-color: var(--start-btn-bg);
-  color: #000000;
-  border: 2px solid var(--btn-active-bg);
-  box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.9);
-  transition: transform 0.1s steps(2),
-              box-shadow 0.1s steps(2),
-              background-color var(--transition-smooth);
-  will-change: transform, box-shadow;
-  white-space: nowrap;
-}
-
-#start-btn:hover {
-  background-color: var(--start-btn-hover);
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.9);
-}
-
-#start-btn:active {
-  transform: translate(3px, 3px);
-  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.9);
 }
 
 /* ----------------------------------------------------
@@ -466,7 +514,7 @@ body {
 }
 
 /* ----------------------------------------------------
-   Responsive Mobile Adjustments (Brutalist Terminal Layout)
+   Responsive Mobile Adjustments
 ----------------------------------------------------- */
 
 @media (max-width: 480px) {
@@ -486,11 +534,10 @@ body {
     width: 100%;
     max-width: 320px;
     padding: 22px 18px 46px 18px;
-    border-radius: 6px;
+    border-radius: 24px;
     gap: 1.2rem;
   }
 
-  /* Terminal Header on mobile: Show ONLY // TIMER_SYS */
   .term-dots,
   .term-meta {
     display: none !important;
@@ -514,33 +561,29 @@ body {
     flex-direction: column;
     width: 100%;
     align-items: stretch;
-    gap: 0.35rem;
-    padding: 4px;
-    border-radius: 4px;
+    border-radius: 14px;
   }
 
   .mode-btn {
     width: 100%;
     text-align: center;
-    padding: 9px 12px;
+    padding: 10px 12px;
     font-size: 0.8rem;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
   }
 
-  /* Brutalist Timer Box on Mobile */
   .timer-box-frame {
-    padding: 16px 14px 14px 14px;
-    gap: 0.75rem;
-    border-radius: 4px;
+    padding: 18px 14px 16px 14px;
+    gap: 0.9rem;
+    border-radius: 18px;
   }
 
-  /* Perfectly Centered & Sized Timer Display */
   #timer {
-    font-size: clamp(2.4rem, 12vw, 3.0rem);
+    font-size: clamp(3.0rem, 15vw, 3.8rem);
     text-align: center;
     width: 100%;
-    letter-spacing: -0.01em;
-    line-height: 1;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -553,35 +596,33 @@ body {
 
   #start-btn {
     font-size: 0.96rem;
-    padding: 11px 24px;
+    padding: 12px 24px;
     width: 100%;
-    max-width: 190px;
+    max-width: 200px;
     min-width: unset;
     letter-spacing: 0.08em;
+    border-radius: 14px;
   }
 
-  /* Terminal Footer on Mobile */
   .terminal-footer {
     gap: 5px;
-    padding-top: 10px;
+    padding-top: 12px;
   }
 
   .term-barcode {
     font-size: 0.62rem;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.12em;
   }
 
   .term-status {
     font-size: 0.68rem;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.08em;
   }
 
-  /* Collapse Chevron Button: Bottom Spacing on Mobile */
   .collapse-btn {
-    bottom: 10px;
+    bottom: 12px;
   }
 
-  /* Collapsed Capsule Mobile Optimization: 3-Letter Shortform & Fit */
   .mode-full {
     display: none !important;
   }
@@ -591,10 +632,10 @@ body {
   }
 
   .container.is-collapsed {
-    max-width: 200px;
-    padding: 9px 14px !important;
+    max-width: 210px;
+    padding: 10px 16px !important;
     gap: 0;
-    border-radius: 4px;
+    border-radius: 999px;
   }
 
   .container.is-collapsed .collapse-btn {
@@ -606,8 +647,8 @@ body {
   }
 
   .collapsed-timer {
-    font-size: 1.12rem;
-    letter-spacing: -0.01em;
+    font-size: 1.2rem;
+    letter-spacing: -0.02em;
   }
 
   .collapsed-mode {
