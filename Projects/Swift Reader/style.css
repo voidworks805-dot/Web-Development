@@ -1,0 +1,81 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #ffffff;
+  color: #111111;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  padding: 2rem;
+  line-height: 1.6;
+}
+
+.controls-group {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Full passage container displaying the complete readable text */
+.passage-container {
+  margin: 1.5rem 0;
+  padding: 1.25rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  min-height: 140px;
+  max-height: 380px;
+  overflow-y: auto;
+  font-size: 1.25rem;
+  line-height: 1.9;
+  background-color: #fafafa;
+}
+
+/* Pre-defined word classes without inline style injection */
+.word {
+  display: inline;
+  padding: 0.1em 0.15em;
+  border-radius: 3px;
+}
+
+/* Pre-defined active highlight class (strictly zero-layout-shift) */
+.word.active {
+  background-color: #fde047;
+  color: #000000;
+}
+
+/* Screen notice hidden by default */
+.screen-notice {
+  display: none;
+}
+
+/* Breakpoint for screens below 480px */
+@media (max-width: 480px) {
+  body {
+    padding: 1rem;
+  }
+
+  /* Main reading area and controls are hidden */
+  .passage-container,
+  .controls-group {
+    display: none;
+  }
+
+  /* Main reading area turns into an advisory notice box */
+  .screen-notice {
+    display: block;
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    background-color: #fffbeb;
+    border: 1px solid #fef08a;
+    border-radius: 6px;
+    color: #854d0e;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+}
+

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swift Reader</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main>
+    <!-- Text Input Area -->
+    <section>
+      <textarea id="text-input" rows="5" cols="70" placeholder="Paste or type your text here..."></textarea>
+    </section>
+
+    <!-- Reader Controls & Speed Adjuster -->
+    <section class="controls-group">
+      <button id="play-pause-btn">Play</button>
+      <button id="reset-btn">Reset</button>
+      <span>Speed: </span>
+      <button id="wpm-dec">-50 WPM</button>
+      <strong id="wpm-display">300 WPM</strong>
+      <button id="wpm-inc">+50 WPM</button>
+      <small>(Max: 900 WPM)</small>
+    </section>
+
+    <!-- Full Passage View with Active Word Tracking -->
+    <section>
+      <div id="reader-passage" class="passage-container" aria-live="polite">
+        <em>Your text will appear here. Press Play to begin guided reading.</em>
+      </div>
+
+      <!-- Small screen advisory notice (< 480px) -->
+      <div id="screen-notice" class="screen-notice" role="alert">
+        <strong>Screen too small:</strong> Please switch to a larger screen (wider than 480px) for the reading view.
+      </div>
+    </section>
+  </main>
+</body>
+</html>
