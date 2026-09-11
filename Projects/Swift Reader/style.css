@@ -57,7 +57,7 @@ html {
 
 body {
   font-family: var(--font-main);
-  background-color: var(--bg-canvas);
+  background-color: transparent;
   color: var(--ink-primary);
   min-height: 100vh;
   line-height: 1.5;
@@ -80,7 +80,7 @@ body {
 }
 
 /* ==========================================================================
-   Fluid Liquid Metal Ambient Background
+   Fluid Liquid Metal Ambient Background (Neutral Platinum Canvas)
    ========================================================================== */
 .ambient-backdrop {
   position: fixed;
@@ -88,50 +88,11 @@ body {
   pointer-events: none;
   z-index: -1;
   overflow: hidden;
-  background: 
-    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(210, 225, 245, 0.6) 0%, transparent 60%),
-    radial-gradient(circle at 100% 100%, rgba(200, 215, 235, 0.4) 0%, transparent 50%),
-    #f5f7fa;
+  background-color: var(--bg-canvas);
 }
 
 .ambient-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.65;
-  animation: floatOrb 18s ease-in-out infinite alternate;
-}
-
-.ambient-orb-1 {
-  top: -12%;
-  left: 15%;
-  width: 700px;
-  height: 700px;
-  background: radial-gradient(circle, rgba(185, 205, 235, 0.7) 0%, rgba(215, 225, 245, 0.3) 50%, transparent 70%);
-}
-
-.ambient-orb-2 {
-  bottom: 0%;
-  right: 10%;
-  width: 750px;
-  height: 750px;
-  background: radial-gradient(circle, rgba(195, 215, 240, 0.65) 0%, rgba(225, 235, 250, 0.25) 55%, transparent 70%);
-  animation-duration: 22s;
-  animation-direction: alternate-reverse;
-}
-
-.ambient-orb-3 {
-  top: 40%;
-  left: 60%;
-  width: 550px;
-  height: 550px;
-  background: radial-gradient(circle, rgba(210, 225, 248, 0.5) 0%, transparent 65%);
-  animation-duration: 15s;
-}
-
-@keyframes floatOrb {
-  0% { transform: translate(0, 0) scale(1); }
-  100% { transform: translate(30px, 40px) scale(1.08); }
+  display: none;
 }
 
 /* ==========================================================================
@@ -141,6 +102,21 @@ body {
   padding: 2.5rem 3rem 5rem;
   max-width: 1440px;
   margin: 0 auto;
+  background-color: transparent;
+}
+
+/* Subtle Architectural Precision Grid Layout (Universal Background Grid) */
+.ambient-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.048) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.048) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: center top;
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* Top Utility Navigation Grid */
@@ -155,6 +131,7 @@ body {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-primary);
+  text-shadow: 0 0 10px var(--bg-canvas), 0 0 6px var(--bg-canvas), 0 0 3px var(--bg-canvas);
 }
 
 .utility-col {
@@ -216,7 +193,7 @@ body {
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(245, 248, 255, 0.45) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(245, 247, 250, 0.5) 100%);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   border: var(--liquid-glass-border);
@@ -308,8 +285,9 @@ body {
   font-size: 1.15rem;
   line-height: 1.68;
   color: var(--ink-secondary);
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: -0.01em;
+  text-shadow: 0 0 12px var(--bg-canvas), 0 0 6px var(--bg-canvas), 0 0 2px var(--bg-canvas);
 }
 
 /* Action Button */
@@ -378,7 +356,7 @@ body {
   gap: 0.6rem;
   padding: 2.2rem 1.8rem;
   border-radius: 4px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(245, 248, 255, 0.38) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(245, 247, 250, 0.45) 100%);
   backdrop-filter: blur(28px) saturate(180%);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
   border: var(--liquid-glass-border);
@@ -388,7 +366,7 @@ body {
 
 .feature-card:hover {
   transform: translateY(-4px);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(248, 250, 255, 0.5) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 247, 250, 0.6) 100%);
   border-color: #ffffff;
   box-shadow: 
     inset 0 2px 2px 0 rgba(255, 255, 255, 1),
@@ -602,7 +580,7 @@ body {
 }
 
 .source-collapsible {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.78) 0%, rgba(245, 248, 255, 0.45) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(245, 247, 250, 0.5) 100%);
   backdrop-filter: blur(28px) saturate(180%);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
   border: var(--liquid-glass-border);
@@ -749,7 +727,7 @@ body.mode-fulltext #fulltext-view { display: flex; }
   width: 100%;
   max-width: 820px;
   height: 330px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.78) 0%, rgba(245, 248, 255, 0.45) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(245, 247, 250, 0.5) 100%);
   backdrop-filter: blur(32px) saturate(180%);
   -webkit-backdrop-filter: blur(32px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.9);
@@ -857,7 +835,7 @@ body.mode-fulltext #fulltext-view { display: flex; }
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(245, 248, 255, 0.4) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(245, 247, 250, 0.45) 100%);
   backdrop-filter: blur(28px) saturate(180%);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.85);
@@ -1051,7 +1029,7 @@ body.mode-fulltext #fulltext-view { display: flex; }
   font-size: 1.18rem;
   line-height: 2.0;
   text-align: left;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(248, 250, 255, 0.6) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(245, 247, 250, 0.6) 100%);
   backdrop-filter: blur(32px) saturate(180%);
   -webkit-backdrop-filter: blur(32px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.9);
@@ -1089,7 +1067,7 @@ body.mode-fulltext #fulltext-view { display: flex; }
   gap: 1.25rem;
   padding: 1rem 1.6rem;
   flex-wrap: wrap;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.78) 0%, rgba(245, 248, 255, 0.45) 100%);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(245, 247, 250, 0.5) 100%);
   backdrop-filter: blur(28px) saturate(180%);
   -webkit-backdrop-filter: blur(28px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.85);
@@ -1269,4 +1247,184 @@ body.mode-fulltext #fulltext-view { display: flex; }
     font-size: 0.82rem;
     color: var(--ink-secondary);
   }
+}
+
+/* ==========================================================================
+   FOCUS / ZEN READING MODE (Universal Distraction-Free Cockpit)
+   ========================================================================== */
+
+/* Top Utility Strip (Part of Layout Flow, Guaranteed Zero Overlap) */
+.focus-top-nav {
+  display: none;
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto 1.25rem auto;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.25rem;
+  box-sizing: border-box;
+}
+
+body.focus-mode .focus-top-nav {
+  display: flex;
+}
+
+.focus-indicator-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-main);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-secondary);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 2px;
+  padding: 0.35rem 0.85rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.focus-pulse-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent-foveal);
+  border-radius: 50%;
+}
+
+.exit-focus-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.1rem;
+  font-family: var(--font-main);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-primary);
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.exit-focus-btn kbd {
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 2px;
+  padding: 0.1rem 0.4rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+.exit-focus-btn:hover {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.18);
+}
+
+.exit-focus-btn:hover kbd {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}
+
+/* Hide Unnecessary UI Elements in Both Modes */
+body.focus-mode .app-header {
+  display: none !important;
+}
+
+body.focus-mode .source-panel-container {
+  display: none !important;
+}
+
+body.focus-mode .speed-panel {
+  display: none !important;
+}
+
+body.focus-mode .shortcuts-legend {
+  display: none !important;
+}
+
+/* Focused Workspace: Full Screen Centering with Clean Padding */
+body.focus-mode .reading-workspace {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+}
+
+/* MODE 1 (RSVP Focus): Center cockpit, interactive card, quiet controls */
+body.focus-mode .rsvp-view {
+  min-height: auto;
+  justify-content: center;
+  gap: 1.75rem;
+  width: 100%;
+}
+
+body.focus-mode .rsvp-card {
+  cursor: pointer;
+  box-shadow: 
+    inset 0 2px 2px 0 rgba(255, 255, 255, 1),
+    inset 0 -2px 3px 0 rgba(0, 0, 0, 0.06),
+    0 35px 80px -15px rgba(15, 23, 42, 0.22);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+body.focus-mode .rsvp-card:hover {
+  transform: scale(1.01);
+}
+
+body.focus-mode .playback-controls {
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Controls appear ONLY when actively hovering reading card or controls */
+body.focus-mode .playback-controls.show-controls,
+body.focus-mode .playback-controls:hover {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* MODE 2 (Full Text Focus): Expansive reading canvas, quiet bottom bar */
+body.focus-mode .fulltext-view {
+  min-height: auto;
+  justify-content: center;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+body.focus-mode .passage-container {
+  max-height: calc(85vh - 100px);
+  min-height: 380px;
+  box-shadow: var(--liquid-glass-shadow-elevated);
+}
+
+body.focus-mode .fulltext-bottom-bar {
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+/* Bottom bar appears ONLY when actively hovering passage container or bottom bar */
+body.focus-mode .fulltext-bottom-bar.show-controls,
+body.focus-mode .fulltext-bottom-bar:hover {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }

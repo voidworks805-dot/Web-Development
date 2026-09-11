@@ -53,6 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const wordCountBadge = document.getElementById('word-count-badge');
   const sourceToggleBtn = document.getElementById('source-toggle-btn');
   const modeToggleBtn = document.getElementById('mode-toggle-btn');
+  const focusToggleBtn = document.getElementById('focus-toggle-btn');
+  const exitFocusBtn = document.getElementById('exit-focus-btn');
   const readingStats = document.getElementById('reading-stats');
   const readingWorkspace = document.querySelector('.reading-workspace');
   let isTransitioningMode = false;
@@ -294,8 +296,28 @@ document.addEventListener('DOMContentLoaded', () => {
   /* Mode Switcher (RSVP vs Full Text)                                          */
   /* -------------------------------------------------------------------------- */
 
-  function setMode(mode) {
-    if (currentMode === mode || isTransitioningMode) return;
+  function setMode(mode, immediate = false) {
+    if (currentMode === mode || (!immediate && isTransitioningMode)) return;
+
+    if (immediate) {
+      currentMode = mode;
+      if (mode === 'fulltext') {
+        body.classList.remove('mode-rsvp');
+        body.classList.add('mode-fulltext');
+        modeToggleBtn.classList.add('active');
+        modeToggleBtn.querySelector('.mode-label').textContent = 'RSVP Mode';
+        if (wordElements[currentIndex]) {
+          wordElements[currentIndex].scrollIntoView({ block: 'center' });
+        }
+      } else {
+        body.classList.remove('mode-fulltext');
+        body.classList.add('mode-rsvp');
+        modeToggleBtn.classList.remove('active');
+        modeToggleBtn.querySelector('.mode-label').textContent = 'Full Text';
+      }
+      return;
+    }
+
     isTransitioningMode = true;
 
     // Step 1: Trigger smooth fade-out
@@ -380,6 +402,105 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mode Switcher
   modeToggleBtn.addEventListener('click', toggleMode);
 
+  // Focus Mode Logic
+  function toggleFocusMode() {
+    const isFocus = body.classList.toggle('focus-mode');
+    if (!isFocus) {
+      const pc = document.querySelector('.playback-controls');
+      const fb = document.querySelector('.fulltext-bottom-bar');
+      if (pc) pc.classList.remove('show-controls');
+      if (fb) fb.classList.remove('show-controls');
+    }
+    if (focusToggleBtn) {
+      focusToggleBtn.classList.toggle('active', isFocus);
+      const label = focusToggleBtn.querySelector('.focus-label');
+      if (label) label.textContent = isFocus ? 'Exit Focus' : 'Focus Mode';
+    }
+  }
+
+  if (focusToggleBtn) focusToggleBtn.addEventListener('click', toggleFocusMode);
+  if (exitFocusBtn) exitFocusBtn.addEventListener('click', toggleFocusMode);
+
+  // Clicking RSVP card toggles play / pause
+  const rsvpCard = document.querySelector('.rsvp-card');
+  if (rsvpCard) {
+    rsvpCard.addEventListener('click', (e) => {
+      if (!e.target.closest('button')) {
+        togglePlayPause();
+      }
+    });
+  }
+
+  // Focus Mode Active Hover Detection strictly on Reading Containers
+  let rsvpControlsTimer = null;
+  let fulltextControlsTimer = null;
+  const playbackControls = document.querySelector('.playback-controls');
+  const fulltextBottomBar = document.querySelector('.fulltext-bottom-bar');
+
+  function triggerRsvpControls() {
+    if (!body.classList.contains('focus-mode') || !playbackControls) return;
+    playbackControls.classList.add('show-controls');
+    clearTimeout(rsvpControlsTimer);
+    rsvpControlsTimer = setTimeout(() => {
+      if (!playbackControls.matches(':hover')) {
+        playbackControls.classList.remove('show-controls');
+      }
+    }, 2200);
+  }
+
+  function leaveRsvpControls() {
+    if (!body.classList.contains('focus-mode') || !playbackControls) return;
+    clearTimeout(rsvpControlsTimer);
+    rsvpControlsTimer = setTimeout(() => {
+      if (!rsvpCard.matches(':hover') && !playbackControls.matches(':hover')) {
+        playbackControls.classList.remove('show-controls');
+      }
+    }, 150);
+  }
+
+  if (rsvpCard && playbackControls) {
+    rsvpCard.addEventListener('mousemove', triggerRsvpControls);
+    rsvpCard.addEventListener('mouseenter', triggerRsvpControls);
+    rsvpCard.addEventListener('mouseleave', leaveRsvpControls);
+    playbackControls.addEventListener('mouseenter', () => {
+      clearTimeout(rsvpControlsTimer);
+      playbackControls.classList.add('show-controls');
+    });
+    playbackControls.addEventListener('mouseleave', leaveRsvpControls);
+  }
+
+  function triggerFulltextControls() {
+    if (!body.classList.contains('focus-mode') || !fulltextBottomBar) return;
+    fulltextBottomBar.classList.add('show-controls');
+    clearTimeout(fulltextControlsTimer);
+    fulltextControlsTimer = setTimeout(() => {
+      if (!fulltextBottomBar.matches(':hover')) {
+        fulltextBottomBar.classList.remove('show-controls');
+      }
+    }, 2200);
+  }
+
+  function leaveFulltextControls() {
+    if (!body.classList.contains('focus-mode') || !fulltextBottomBar) return;
+    clearTimeout(fulltextControlsTimer);
+    fulltextControlsTimer = setTimeout(() => {
+      if (!readerPassage.matches(':hover') && !fulltextBottomBar.matches(':hover')) {
+        fulltextBottomBar.classList.remove('show-controls');
+      }
+    }, 150);
+  }
+
+  if (readerPassage && fulltextBottomBar) {
+    readerPassage.addEventListener('mousemove', triggerFulltextControls);
+    readerPassage.addEventListener('mouseenter', triggerFulltextControls);
+    readerPassage.addEventListener('mouseleave', leaveFulltextControls);
+    fulltextBottomBar.addEventListener('mouseenter', () => {
+      clearTimeout(fulltextControlsTimer);
+      fulltextBottomBar.classList.add('show-controls');
+    });
+    fulltextBottomBar.addEventListener('mouseleave', leaveFulltextControls);
+  }
+
   // Smooth Source Text Drawer Controls
   function openSourceText() {
     if (sourceCollapsible) {
@@ -446,9 +567,30 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (e.code === 'KeyF') {
       e.preventDefault();
       toggleMode();
+    } else if (e.code === 'KeyZ') {
+      e.preventDefault();
+      toggleFocusMode();
+    } else if (e.code === 'Escape') {
+      if (body.classList.contains('focus-mode')) {
+        e.preventDefault();
+        toggleFocusMode();
+      }
     }
   });
 
   // Initial Load
   loadText();
+
+  // URL Parameters support (e.g. ?focus or ?mode=fulltext)
+  try {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('mode') === 'fulltext') {
+      setMode('fulltext', true);
+    }
+    if (params.has('focus')) {
+      toggleFocusMode();
+    }
+  } catch (err) {
+    // Ignore in non-browser environments
+  }
 });

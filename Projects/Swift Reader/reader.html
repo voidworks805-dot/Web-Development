@@ -35,6 +35,10 @@
       </div>
 
       <div class="header-right">
+        <!-- Focus Mode Toggle -->
+        <button id="focus-toggle-btn" class="icon-btn glass-btn focus-btn" title="Toggle Focus Mode (Z)" aria-label="Toggle Focus Mode">
+          <span class="focus-label">Focus Mode</span>
+        </button>
         <!-- Mode Switcher (RSVP vs Full Text) -->
         <button id="mode-toggle-btn" class="icon-btn glass-btn mode-btn" title="Toggle Full Text Mode (F)" aria-label="Toggle Reading Mode">
           <span class="mode-label">Full Text</span>
@@ -79,6 +83,18 @@ Go to your library and add something to read. A book you've been meaning to fini
 
   <!-- Main Reading Workspace -->
   <main class="reading-workspace">
+
+    <!-- Minimal Focus Mode Top Bar (Dedicated Clearance, Zero Content Overlap) -->
+    <div class="focus-top-nav">
+      <div class="focus-indicator-pill">
+        <span class="focus-pulse-dot"></span>
+        <span class="focus-nav-label">Focus Mode</span>
+      </div>
+      <button id="exit-focus-btn" class="exit-focus-btn glass-btn" title="Exit Focus Mode (Esc / Z)" aria-label="Exit Focus Mode">
+        <span>✕ Exit Focus</span>
+        <kbd>Esc</kbd>
+      </button>
+    </div>
 
     <!-- MODE 1: RSVP SINGLE-WORD VIEW (Default) -->
     <section id="rsvp-view" class="reading-mode-view rsvp-view">
@@ -144,6 +160,7 @@ Go to your library and add something to read. A book you've been meaning to fini
         <span><kbd>←</kbd> <kbd>→</kbd> Seek</span>
         <span><kbd>↑</kbd> <kbd>↓</kbd> Speed</span>
         <span><kbd>F</kbd> Mode</span>
+        <span><kbd>Z</kbd> Focus</span>
       </footer>
     </section>
 
