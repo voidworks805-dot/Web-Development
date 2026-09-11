@@ -3,45 +3,64 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Swift Reader - Reading Zone</title>
+  <title>Swift Reader — Reading Workspace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body class="mode-rsvp">
-  <!-- Top Navigation & Stats Bar -->
-  <header class="app-header">
+  <!-- Ambient Luminous Glow Orbs & Backdrop -->
+  <div class="ambient-backdrop">
+    <div class="ambient-orb ambient-orb-1"></div>
+    <div class="ambient-orb ambient-orb-2"></div>
+    <div class="ambient-orb ambient-orb-3"></div>
+    <div class="ambient-mesh"></div>
+  </div>
+
+  <!-- Top Glass Header -->
+  <header class="app-header glass-panel">
     <div class="header-container">
       <div class="header-left">
-        <a href="index.html" class="back-link" title="Back to Home">←</a>
+        <a href="index.html" class="back-link glass-btn" title="Return to Home">
+          <span>← Exit</span>
+        </a>
         <div class="doc-info">
-          <h1 id="doc-title" class="doc-title">Welcome to Speed Reader</h1>
-          <div id="reading-stats" class="reading-stats">0 / 0 words · &lt; 1 min left</div>
+          <div class="doc-title-row">
+            <span class="doc-badge">RSVP Active</span>
+            <h1 id="doc-title" class="doc-title">Welcome to Swift Reader</h1>
+          </div>
+          <div id="reading-stats" class="reading-stats">1 / 172 words · &lt; 1 min left</div>
         </div>
       </div>
 
       <div class="header-right">
         <!-- Mode Switcher (RSVP vs Full Text) -->
-        <button id="mode-toggle-btn" class="icon-btn mode-btn" title="Toggle Full Text Mode (F)" aria-label="Toggle Reading Mode">
+        <button id="mode-toggle-btn" class="icon-btn glass-btn mode-btn" title="Toggle Full Text Mode (F)" aria-label="Toggle Reading Mode">
           <span class="mode-label">Full Text</span>
         </button>
         <!-- Toggle Source Text Input -->
-        <button id="source-toggle-btn" class="icon-btn" title="Edit Source Text" aria-label="Edit Source Text">
-          <span>Edit Text</span>
+        <button id="source-toggle-btn" class="icon-btn glass-btn" title="Edit Source Text" aria-label="Edit Source Text">
+          <span>Source Text</span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Collapsible Source Text Area -->
+  <!-- Collapsible Source Text Drawer -->
   <section class="source-panel-container">
-    <div id="source-collapsible" class="source-collapsible">
+    <div id="source-collapsible" class="source-collapsible glass-panel">
       <button id="source-header-btn" class="source-summary" aria-expanded="false" aria-controls="source-body">
-        <span class="summary-label">Source Text</span>
-        <span id="word-count-badge" class="word-count-badge">0 words</span>
+        <span class="summary-label">
+          <span class="summary-chevron">▶</span>
+          <span>Edit Source Text</span>
+        </span>
+        <span id="word-count-badge" class="word-count-badge">172 words</span>
       </button>
       <div id="source-body" class="source-body-wrapper">
         <div class="source-body-content">
-          <textarea id="text-input" rows="7" placeholder="Paste or type your text here...">Welcome!
+          <textarea id="text-input" rows="7" placeholder="Paste or type text to read here...">Welcome!
 You're reading this with RSVP — Rapid Serial Visual Presentation. One word at a time, right where your eyes are. No scanning, no jumping around. Just pure focus.
 Notice how fast you're going? That's the magic. Your brain doesn't need to move your eyes across lines anymore. Words come to you. It's surprisingly natural once you get into the flow.
 What You Can Do
@@ -51,8 +70,8 @@ Press Space to pause or play. Use arrow keys to skip forward or back. Toggle the
 That's It!
 Go to your library and add something to read. A book you've been meaning to finish, an article you saved, anything. Happy reading!</textarea>
           <div class="source-actions">
-            <button id="load-text-btn" class="load-text-btn">Load Text</button>
-            <button id="collapse-text-btn" class="collapse-btn" title="Collapse source text">Collapse ▲</button>
+            <button id="load-text-btn" class="load-text-btn glass-btn-primary">Load Text</button>
+            <button id="collapse-text-btn" class="collapse-btn glass-btn" title="Collapse source text">Close</button>
           </div>
         </div>
       </div>
@@ -64,56 +83,56 @@ Go to your library and add something to read. A book you've been meaning to fini
 
     <!-- MODE 1: RSVP SINGLE-WORD VIEW (Default) -->
     <section id="rsvp-view" class="reading-mode-view rsvp-view">
-      <!-- ORP Card Container -->
-      <div class="rsvp-card">
+      <!-- Rounded Frosted RSVP Card -->
+      <div class="rsvp-card glass-panel">
         <div class="orp-tick orp-tick-top"></div>
         <div id="rsvp-word-display" class="rsvp-word-display">
-          <span class="orp-prefix">read</span><span class="orp-anchor">i</span><span class="orp-suffix">ng!</span>
+          <span class="orp-prefix">Wel</span><span class="orp-anchor">c</span><span class="orp-suffix">ome!</span>
         </div>
         <div class="orp-tick orp-tick-bottom"></div>
-        <div id="rsvp-wpm-badge" class="rsvp-wpm-badge">300 wpm</div>
+        <div id="rsvp-wpm-badge" class="rsvp-wpm-badge">300 WPM</div>
       </div>
 
       <!-- Playback Controls -->
       <div class="playback-controls">
-        <button id="prev-word-btn" class="nav-btn" title="Previous word (←)">&lt;</button>
-        <button id="play-pause-btn" class="play-btn" title="Play / Pause (Space)">Play</button>
-        <button id="next-word-btn" class="nav-btn" title="Next word (→)">&gt;</button>
+        <button id="prev-word-btn" class="nav-btn glass-btn" title="Previous word (←)">◀</button>
+        <button id="play-pause-btn" class="play-btn glass-btn-primary" title="Play / Pause (Space)">Play</button>
+        <button id="next-word-btn" class="nav-btn glass-btn" title="Next word (→)">▶</button>
       </div>
 
       <!-- Speed Control Panel -->
-      <div class="speed-panel">
+      <div class="speed-panel glass-panel">
         <div class="speed-panel-header">
           <span class="speed-title">Reading Speed</span>
-          <span class="speed-value-display"><strong id="speed-display-val">300</strong> wpm</span>
+          <span class="speed-value-display"><strong id="speed-display-val">300</strong> WPM</span>
         </div>
 
         <!-- Slider with Minus and Plus Buttons -->
         <div class="speed-slider-row">
-          <button id="speed-minus-btn" class="speed-step-btn" title="Decrease speed (-)">−</button>
+          <button id="speed-minus-btn" class="speed-step-btn glass-btn" title="Decrease speed (-)">−</button>
           <input type="range" id="speed-slider" min="60" max="900" step="10" value="300" class="speed-slider">
-          <button id="speed-plus-btn" class="speed-step-btn" title="Increase speed (+)">+</button>
+          <button id="speed-plus-btn" class="speed-step-btn glass-btn" title="Increase speed (+)">+</button>
         </div>
 
         <!-- Speed Presets -->
         <div class="speed-presets-row">
-          <button class="preset-btn" data-wpm="200">
+          <button class="preset-btn glass-btn" data-wpm="200">
             <span class="preset-val">200</span>
             <span class="preset-name">Beginner</span>
           </button>
-          <button class="preset-btn" data-wpm="250">
+          <button class="preset-btn glass-btn" data-wpm="250">
             <span class="preset-val">250</span>
-            <span class="preset-name">Average</span>
+            <span class="preset-name">Normal</span>
           </button>
-          <button class="preset-btn active" data-wpm="300">
+          <button class="preset-btn glass-btn active" data-wpm="300">
             <span class="preset-val">300</span>
             <span class="preset-name">Fast</span>
           </button>
-          <button class="preset-btn" data-wpm="450">
+          <button class="preset-btn glass-btn" data-wpm="450">
             <span class="preset-val">450</span>
             <span class="preset-name">Advanced</span>
           </button>
-          <button class="preset-btn" data-wpm="500">
+          <button class="preset-btn glass-btn" data-wpm="500">
             <span class="preset-val">500</span>
             <span class="preset-name">Expert</span>
           </button>
@@ -122,26 +141,26 @@ Go to your library and add something to read. A book you've been meaning to fini
 
       <!-- Keyboard Shortcuts Legend -->
       <footer class="shortcuts-legend">
-        <span><kbd>Space</kbd> Play/Pause</span>
-        <span><kbd>←</kbd> <kbd>→</kbd> Navigate</span>
+        <span><kbd>Space</kbd> Play / Pause</span>
+        <span><kbd>←</kbd> <kbd>→</kbd> Seek</span>
         <span><kbd>↑</kbd> <kbd>↓</kbd> Speed</span>
-        <span><kbd>F</kbd> Full Text</span>
+        <span><kbd>F</kbd> Mode</span>
       </footer>
     </section>
 
     <!-- MODE 2: FULL TEXT VIEW -->
     <section id="fulltext-view" class="reading-mode-view fulltext-view">
       <!-- Full Passage Content -->
-      <div id="reader-passage" class="passage-container" aria-live="polite">
-        <!-- Spans generated dynamically by JS -->
+      <div id="reader-passage" class="passage-container glass-panel" aria-live="polite">
+        <!-- Spans mounted dynamically -->
       </div>
 
       <!-- Bottom Progress & Controls Bar -->
-      <div class="fulltext-bottom-bar">
+      <div class="fulltext-bottom-bar glass-panel">
         <div class="fulltext-nav-controls">
-          <button id="ft-prev-btn" class="nav-btn" title="Previous word">&lt;</button>
-          <button id="ft-play-pause-btn" class="play-btn" title="Play / Pause">Play</button>
-          <button id="ft-next-btn" class="nav-btn" title="Next word">&gt;</button>
+          <button id="ft-prev-btn" class="nav-btn glass-btn" title="Previous word">◀</button>
+          <button id="ft-play-pause-btn" class="play-btn glass-btn-primary" title="Play / Pause">Play</button>
+          <button id="ft-next-btn" class="nav-btn glass-btn" title="Next word">▶</button>
         </div>
 
         <!-- Progress Timeline Track -->
@@ -150,15 +169,16 @@ Go to your library and add something to read. A book you've been meaning to fini
         </div>
 
         <div class="fulltext-stats">
-          <span id="ft-time-left">&lt; 1 min left</span>
-          <span id="ft-wpm">300 wpm</span>
+          <span id="ft-time-left" class="hud-pill">&lt; 1 min left</span>
+          <span id="ft-wpm" class="hud-pill">300 WPM</span>
         </div>
       </div>
     </section>
 
     <!-- Advisory Screen Notice (< 480px) -->
-    <div id="screen-notice" class="screen-notice" role="alert">
-      <strong>Screen too small:</strong> Please switch to a larger screen (wider than 480px) for the reading view.
+    <div id="screen-notice" class="screen-notice glass-panel" role="alert">
+      <div class="notice-title">Screen Notice</div>
+      <p>Please expand your viewport or switch to a display wider than 480px for the optimal RSVP reading experience.</p>
     </div>
 
   </main>

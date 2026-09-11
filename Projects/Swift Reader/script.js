@@ -273,8 +273,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (speedSlider) speedSlider.value = currentWpm;
     if (speedDisplayVal) speedDisplayVal.textContent = currentWpm;
-    if (rsvpWpmBadge) rsvpWpmBadge.textContent = `${currentWpm} wpm`;
-    if (ftWpm) ftWpm.textContent = `${currentWpm} wpm`;
+    if (rsvpWpmBadge) rsvpWpmBadge.textContent = `${currentWpm} WPM`;
+    if (ftWpm) ftWpm.textContent = `${currentWpm} WPM`;
 
     // Highlight active preset button if matches
     presetBtns.forEach((btn) => {
@@ -303,7 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
       readingWorkspace.classList.add('fade-out');
     }
 
-    // Step 2: After fade-out completes (150ms), switch modes and fade back in
+    // Step 2: After fade-out completes (250ms), switch modes and fade back in
     setTimeout(() => {
       currentMode = mode;
       if (mode === 'fulltext') {
@@ -329,8 +329,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Release transition lock after fade-in
       setTimeout(() => {
         isTransitioningMode = false;
-      }, 150);
-    }, 150);
+      }, 250);
+    }, 250);
   }
 
   function toggleMode() {
@@ -446,13 +446,6 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (e.code === 'KeyF') {
       e.preventDefault();
       toggleMode();
-    }
-  });
-
-  // Viewport resize pause guard
-  window.addEventListener('resize', () => {
-    if (window.innerWidth <= 480 && isPlaying) {
-      pause();
     }
   });
 
