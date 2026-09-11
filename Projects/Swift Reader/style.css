@@ -312,7 +312,7 @@ body {
   letter-spacing: -0.01em;
 }
 
-/* Liquid Mercury Action Button */
+/* Action Button */
 .editorial-cta-btn {
   display: inline-flex;
   align-items: center;
@@ -320,9 +320,9 @@ body {
   gap: 0.75rem;
   align-self: flex-start;
   padding: 1rem 2.5rem;
-  background: linear-gradient(180deg, #1f242d 0%, #080a0f 100%);
+  background: #000000;
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.45);
+  border: none;
   border-radius: 9999px;
   font-family: var(--font-main);
   font-size: 0.98rem;
@@ -330,10 +330,7 @@ body {
   letter-spacing: -0.01em;
   text-decoration: none;
   cursor: pointer;
-  box-shadow: 
-    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.8),
-    inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.6),
-    0 16px 36px -6px rgba(15, 23, 42, 0.35);
+  box-shadow: 0 14px 32px -6px rgba(15, 23, 42, 0.28);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
@@ -343,7 +340,7 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
   transform: translateX(-100%);
   transition: transform 0.6s ease;
 }
@@ -354,12 +351,8 @@ body {
 
 .editorial-cta-btn:hover {
   transform: translateY(-2px);
-  background: linear-gradient(180deg, #2b323e 0%, #0c0f16 100%);
-  border-color: rgba(255, 255, 255, 0.7);
-  box-shadow: 
-    inset 0 2px 1.5px 0 rgba(255, 255, 255, 1),
-    inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.6),
-    0 20px 45px -8px rgba(15, 23, 42, 0.45);
+  background: #181c24;
+  box-shadow: 0 18px 40px -8px rgba(15, 23, 42, 0.38);
 }
 
 .editorial-cta-btn .arrow {
@@ -470,9 +463,9 @@ body {
   color: var(--ink-primary);
   text-decoration: none;
   padding: 0.45rem 1rem;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(240, 245, 252, 0.5));
-  border: var(--liquid-glass-border);
-  box-shadow: var(--liquid-specular-top), 0 2px 8px rgba(0, 0, 0, 0.04);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   border-radius: 9999px;
   transition: all 0.2s ease;
 }
@@ -500,9 +493,8 @@ body {
   font-size: 0.68rem;
   font-weight: 700;
   color: #ffffff;
-  background: linear-gradient(180deg, #252b36 0%, #090c12 100%);
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  background: #000000;
+  border: none;
   padding: 0.15rem 0.65rem;
   border-radius: 9999px;
   text-transform: uppercase;
@@ -531,7 +523,7 @@ body {
   gap: 0.75rem;
 }
 
-/* Liquid Chrome Header Controls */
+/* Header Controls */
 .glass-btn {
   display: inline-flex;
   align-items: center;
@@ -543,9 +535,9 @@ body {
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: var(--ink-primary);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.75), rgba(240, 245, 255, 0.45));
-  border: var(--liquid-glass-border);
-  box-shadow: var(--liquid-specular-top), 0 2px 8px rgba(0, 0, 0, 0.04);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   border-radius: 9999px;
   padding: 0.5rem 1.15rem;
   cursor: pointer;
@@ -555,8 +547,8 @@ body {
 
 .glass-btn:hover {
   background: #ffffff;
-  border-color: #ffffff;
-  box-shadow: inset 0 1.5px 1px rgba(255, 255, 255, 1), 0 6px 16px rgba(15, 23, 42, 0.08);
+  border-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
   transform: translateY(-1px);
 }
 
@@ -565,13 +557,13 @@ body {
 }
 
 .icon-btn.active {
-  background: linear-gradient(180deg, #1f242d 0%, #080a0f 100%);
+  background: #000000;
   color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.5);
-  box-shadow: inset 0 1.5px 1px rgba(255, 255, 255, 0.7), 0 4px 14px rgba(15, 23, 42, 0.25);
+  border: none;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25);
 }
 
-/* Primary Liquid Chrome Play Button */
+/* Primary Play Button */
 .glass-btn-primary {
   display: inline-flex;
   align-items: center;
@@ -583,26 +575,19 @@ body {
   letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #ffffff;
-  background: linear-gradient(180deg, #1f242d 0%, #080a0f 100%);
-  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: #000000;
+  border: none;
   border-radius: 9999px;
   padding: 0.7rem 2rem;
   cursor: pointer;
-  box-shadow: 
-    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.8),
-    inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.6),
-    0 14px 30px -5px rgba(15, 23, 42, 0.3);
+  box-shadow: 0 12px 28px -5px rgba(15, 23, 42, 0.25);
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-btn-primary:hover {
   transform: translateY(-2px);
-  background: linear-gradient(180deg, #2b323e 0%, #0c0f16 100%);
-  border-color: rgba(255, 255, 255, 0.7);
-  box-shadow: 
-    inset 0 2px 1.5px 0 rgba(255, 255, 255, 1),
-    inset 0 -1.5px 2px 0 rgba(0, 0, 0, 0.6),
-    0 18px 40px -6px rgba(15, 23, 42, 0.4);
+  background: #181c24;
+  box-shadow: 0 16px 36px -6px rgba(15, 23, 42, 0.35);
 }
 
 /* ==========================================================================
@@ -969,9 +954,9 @@ body.mode-fulltext #fulltext-view { display: flex; }
   flex-direction: column;
   align-items: center;
   padding: 0.65rem 0.4rem;
-  background: rgba(255, 255, 255, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -995,14 +980,15 @@ body.mode-fulltext #fulltext-view { display: flex; }
 
 .preset-btn:hover {
   background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.2);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
 }
 
 .preset-btn.active {
-  background: linear-gradient(180deg, #1f242d 0%, #080a0f 100%);
-  border-color: rgba(255, 255, 255, 0.5);
-  box-shadow: inset 0 1.5px 1px rgba(255, 255, 255, 0.7), 0 6px 16px rgba(15, 23, 42, 0.25);
+  background: #000000;
+  border: none;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.25);
 }
 
 .preset-btn.active .preset-val,
