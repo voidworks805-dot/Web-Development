@@ -6,24 +6,17 @@
   <title>Swift Reader — Reading Workspace</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
 <body class="mode-rsvp">
-  <!-- Ambient Luminous Glow Orbs & Backdrop -->
-  <div class="ambient-backdrop">
-    <div class="ambient-orb ambient-orb-1"></div>
-    <div class="ambient-orb ambient-orb-2"></div>
-    <div class="ambient-orb ambient-orb-3"></div>
-    <div class="ambient-mesh"></div>
-  </div>
 
-  <!-- Top Glass Header -->
-  <header class="app-header glass-panel">
+  <!-- Top Swiss Header -->
+  <header class="app-header">
     <div class="header-container">
       <div class="header-left">
-        <a href="index.html" class="back-link glass-btn" title="Return to Home">
+        <a href="index.html" class="back-link" title="Return to Home">
           <span>← Exit</span>
         </a>
         <div class="doc-info">
@@ -50,7 +43,7 @@
 
   <!-- Collapsible Source Text Drawer -->
   <section class="source-panel-container">
-    <div id="source-collapsible" class="source-collapsible glass-panel">
+    <div id="source-collapsible" class="source-collapsible">
       <button id="source-header-btn" class="source-summary" aria-expanded="false" aria-controls="source-body">
         <span class="summary-label">
           <span class="summary-chevron">▶</span>
@@ -83,8 +76,8 @@ Go to your library and add something to read. A book you've been meaning to fini
 
     <!-- MODE 1: RSVP SINGLE-WORD VIEW (Default) -->
     <section id="rsvp-view" class="reading-mode-view rsvp-view">
-      <!-- Rounded Frosted RSVP Card -->
-      <div class="rsvp-card glass-panel">
+      <!-- Stark Swiss RSVP Card -->
+      <div class="rsvp-card">
         <div class="orp-tick orp-tick-top"></div>
         <div id="rsvp-word-display" class="rsvp-word-display">
           <span class="orp-prefix">Wel</span><span class="orp-anchor">c</span><span class="orp-suffix">ome!</span>
@@ -101,7 +94,7 @@ Go to your library and add something to read. A book you've been meaning to fini
       </div>
 
       <!-- Speed Control Panel -->
-      <div class="speed-panel glass-panel">
+      <div class="speed-panel">
         <div class="speed-panel-header">
           <span class="speed-title">Reading Speed</span>
           <span class="speed-value-display"><strong id="speed-display-val">300</strong> WPM</span>
@@ -116,23 +109,23 @@ Go to your library and add something to read. A book you've been meaning to fini
 
         <!-- Speed Presets -->
         <div class="speed-presets-row">
-          <button class="preset-btn glass-btn" data-wpm="200">
+          <button class="preset-btn" data-wpm="200">
             <span class="preset-val">200</span>
             <span class="preset-name">Beginner</span>
           </button>
-          <button class="preset-btn glass-btn" data-wpm="250">
+          <button class="preset-btn" data-wpm="250">
             <span class="preset-val">250</span>
             <span class="preset-name">Normal</span>
           </button>
-          <button class="preset-btn glass-btn active" data-wpm="300">
+          <button class="preset-btn active" data-wpm="300">
             <span class="preset-val">300</span>
             <span class="preset-name">Fast</span>
           </button>
-          <button class="preset-btn glass-btn" data-wpm="450">
+          <button class="preset-btn" data-wpm="450">
             <span class="preset-val">450</span>
             <span class="preset-name">Advanced</span>
           </button>
-          <button class="preset-btn glass-btn" data-wpm="500">
+          <button class="preset-btn" data-wpm="500">
             <span class="preset-val">500</span>
             <span class="preset-name">Expert</span>
           </button>
@@ -151,12 +144,12 @@ Go to your library and add something to read. A book you've been meaning to fini
     <!-- MODE 2: FULL TEXT VIEW -->
     <section id="fulltext-view" class="reading-mode-view fulltext-view">
       <!-- Full Passage Content -->
-      <div id="reader-passage" class="passage-container glass-panel" aria-live="polite">
+      <div id="reader-passage" class="passage-container" aria-live="polite">
         <!-- Spans mounted dynamically -->
       </div>
 
       <!-- Bottom Progress & Controls Bar -->
-      <div class="fulltext-bottom-bar glass-panel">
+      <div class="fulltext-bottom-bar">
         <div class="fulltext-nav-controls">
           <button id="ft-prev-btn" class="nav-btn glass-btn" title="Previous word">◀</button>
           <button id="ft-play-pause-btn" class="play-btn glass-btn-primary" title="Play / Pause">Play</button>
@@ -176,7 +169,7 @@ Go to your library and add something to read. A book you've been meaning to fini
     </section>
 
     <!-- Advisory Screen Notice (< 480px) -->
-    <div id="screen-notice" class="screen-notice glass-panel" role="alert">
+    <div id="screen-notice" class="screen-notice" role="alert">
       <div class="notice-title">Screen Notice</div>
       <p>Please expand your viewport or switch to a display wider than 480px for the optimal RSVP reading experience.</p>
     </div>
