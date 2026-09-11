@@ -32,7 +32,7 @@
 
   /* Typography Stack */
   --font-main: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-mono: 'JetBrains Mono', 'Cascadia Code', Consolas, monospace;
+  --font-mono: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 * {
@@ -397,14 +397,15 @@ body {
 }
 
 .feature-index {
-  font-family: var(--font-mono);
+  font-family: var(--font-main);
   font-size: 0.75rem;
-  font-weight: 700;
+  font-weight: 800;
   color: var(--ink-dim);
-  letter-spacing: 0.08em;
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.95);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 1), 0 2px 6px rgba(0, 0, 0, 0.04);
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   padding: 0.2rem 0.6rem;
   border-radius: 6px;
   display: inline-block;
@@ -509,12 +510,13 @@ body {
 }
 
 .reading-stats {
-  font-family: var(--font-mono);
+  font-family: var(--font-main);
   font-size: 0.72rem;
   color: var(--ink-dim);
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
 }
 
 .header-right {
@@ -650,13 +652,15 @@ body {
 }
 
 .word-count-badge {
-  font-family: var(--font-mono);
+  font-family: var(--font-main);
   font-size: 0.72rem;
-  font-weight: 600;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
   color: var(--ink-dim);
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.95);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 1);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   padding: 0.15rem 0.65rem;
   border-radius: 9999px;
 }
@@ -686,8 +690,8 @@ body {
 
 #text-input {
   width: 100%;
-  font-family: var(--font-mono);
-  font-size: 0.88rem;
+  font-family: var(--font-main);
+  font-size: 0.92rem;
   line-height: 1.6;
   padding: 1.1rem;
   background: rgba(255, 255, 255, 0.85);
@@ -810,14 +814,15 @@ body.mode-fulltext #fulltext-view { display: flex; }
   position: absolute;
   bottom: 16px;
   right: 22px;
-  font-family: var(--font-mono);
+  font-family: var(--font-main);
   font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
   color: var(--ink-dim);
   background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.95);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 1), 0 2px 6px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
 }
@@ -875,13 +880,15 @@ body.mode-fulltext #fulltext-view { display: flex; }
 }
 
 .speed-value-display {
-  font-family: var(--font-mono);
+  font-family: var(--font-main);
   font-size: 0.82rem;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
   color: var(--ink-primary);
   background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.95);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 1);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
 }
@@ -963,9 +970,11 @@ body.mode-fulltext #fulltext-view { display: flex; }
 }
 
 .preset-val {
-  font-family: var(--font-mono);
-  font-size: 0.88rem;
-  font-weight: 700;
+  font-family: var(--font-main);
+  font-size: 0.98rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
   color: var(--ink-primary);
 }
 
@@ -1012,11 +1021,11 @@ body.mode-fulltext #fulltext-view { display: flex; }
 .shortcuts-legend kbd {
   color: var(--ink-primary);
   background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.95);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 1), 0 2px 4px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
   padding: 0.2rem 0.55rem;
   border-radius: 6px;
-  font-family: var(--font-mono);
+  font-family: var(--font-main);
   font-size: 0.72rem;
   font-weight: 700;
 }
@@ -1157,15 +1166,16 @@ body.mode-fulltext #fulltext-view { display: flex; }
 }
 
 .hud-pill {
-  font-family: var(--font-mono);
+  font-family: var(--font-main);
   color: var(--ink-dim);
   background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.95);
-  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 1);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
   padding: 0.35rem 0.75rem;
   border-radius: 9999px;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
 }
 
 /* ==========================================================================
