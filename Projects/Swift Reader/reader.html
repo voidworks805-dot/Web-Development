@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Swift Reader - Reading Zone</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body class="mode-rsvp">
+  <!-- Top Navigation & Stats Bar -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="header-left">
+        <a href="index.html" class="back-link" title="Back to Home">←</a>
+        <div class="doc-info">
+          <h1 id="doc-title" class="doc-title">Welcome to Speed Reader</h1>
+          <div id="reading-stats" class="reading-stats">0 / 0 words · &lt; 1 min left</div>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <!-- Mode Switcher (RSVP vs Full Text) -->
+        <button id="mode-toggle-btn" class="icon-btn mode-btn" title="Toggle Full Text Mode (F)" aria-label="Toggle Reading Mode">
+          <span class="mode-label">Full Text</span>
+        </button>
+        <!-- Toggle Source Text Input -->
+        <button id="source-toggle-btn" class="icon-btn" title="Edit Source Text" aria-label="Edit Source Text">
+          <span>Edit Text</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Collapsible Source Text Area -->
+  <section class="source-panel-container">
+    <div id="source-collapsible" class="source-collapsible">
+      <button id="source-header-btn" class="source-summary" aria-expanded="false" aria-controls="source-body">
+        <span class="summary-label">Source Text</span>
+        <span id="word-count-badge" class="word-count-badge">0 words</span>
+      </button>
+      <div id="source-body" class="source-body-wrapper">
+        <div class="source-body-content">
+          <textarea id="text-input" rows="7" placeholder="Paste or type your text here...">Welcome!
+You're reading this with RSVP — Rapid Serial Visual Presentation. One word at a time, right where your eyes are. No scanning, no jumping around. Just pure focus.
+Notice how fast you're going? That's the magic. Your brain doesn't need to move your eyes across lines anymore. Words come to you. It's surprisingly natural once you get into the flow.
+What You Can Do
+Import any book, PDF, or article from a URL. Paste text directly if you prefer. Everything gets transformed into this smooth reading experience.
+Customize your speed — start slow, then challenge yourself. Adjust the font, size, and pauses until it feels just right for you. The settings icon in the corner has everything you need.
+Press Space to pause or play. Use arrow keys to skip forward or back. Toggle the text panel to see the full context whenever you need it.
+That's It!
+Go to your library and add something to read. A book you've been meaning to finish, an article you saved, anything. Happy reading!</textarea>
+          <div class="source-actions">
+            <button id="load-text-btn" class="load-text-btn">Load Text</button>
+            <button id="collapse-text-btn" class="collapse-btn" title="Collapse source text">Collapse ▲</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Reading Workspace -->
+  <main class="reading-workspace">
+
+    <!-- MODE 1: RSVP SINGLE-WORD VIEW (Default) -->
+    <section id="rsvp-view" class="reading-mode-view rsvp-view">
+      <!-- ORP Card Container -->
+      <div class="rsvp-card">
+        <div class="orp-tick orp-tick-top"></div>
+        <div id="rsvp-word-display" class="rsvp-word-display">
+          <span class="orp-prefix">read</span><span class="orp-anchor">i</span><span class="orp-suffix">ng!</span>
+        </div>
+        <div class="orp-tick orp-tick-bottom"></div>
+        <div id="rsvp-wpm-badge" class="rsvp-wpm-badge">300 wpm</div>
+      </div>
+
+      <!-- Playback Controls -->
+      <div class="playback-controls">
+        <button id="prev-word-btn" class="nav-btn" title="Previous word (←)">&lt;</button>
+        <button id="play-pause-btn" class="play-btn" title="Play / Pause (Space)">Play</button>
+        <button id="next-word-btn" class="nav-btn" title="Next word (→)">&gt;</button>
+      </div>
+
+      <!-- Speed Control Panel -->
+      <div class="speed-panel">
+        <div class="speed-panel-header">
+          <span class="speed-title">Reading Speed</span>
+          <span class="speed-value-display"><strong id="speed-display-val">300</strong> wpm</span>
+        </div>
+
+        <!-- Slider with Minus and Plus Buttons -->
+        <div class="speed-slider-row">
+          <button id="speed-minus-btn" class="speed-step-btn" title="Decrease speed (-)">−</button>
+          <input type="range" id="speed-slider" min="60" max="900" step="10" value="300" class="speed-slider">
+          <button id="speed-plus-btn" class="speed-step-btn" title="Increase speed (+)">+</button>
+        </div>
+
+        <!-- Speed Presets -->
+        <div class="speed-presets-row">
+          <button class="preset-btn" data-wpm="200">
+            <span class="preset-val">200</span>
+            <span class="preset-name">Beginner</span>
+          </button>
+          <button class="preset-btn" data-wpm="250">
+            <span class="preset-val">250</span>
+            <span class="preset-name">Average</span>
+          </button>
+          <button class="preset-btn active" data-wpm="300">
+            <span class="preset-val">300</span>
+            <span class="preset-name">Fast</span>
+          </button>
+          <button class="preset-btn" data-wpm="450">
+            <span class="preset-val">450</span>
+            <span class="preset-name">Advanced</span>
+          </button>
+          <button class="preset-btn" data-wpm="500">
+            <span class="preset-val">500</span>
+            <span class="preset-name">Expert</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Keyboard Shortcuts Legend -->
+      <footer class="shortcuts-legend">
+        <span><kbd>Space</kbd> Play/Pause</span>
+        <span><kbd>←</kbd> <kbd>→</kbd> Navigate</span>
+        <span><kbd>↑</kbd> <kbd>↓</kbd> Speed</span>
+        <span><kbd>F</kbd> Full Text</span>
+      </footer>
+    </section>
+
+    <!-- MODE 2: FULL TEXT VIEW -->
+    <section id="fulltext-view" class="reading-mode-view fulltext-view">
+      <!-- Full Passage Content -->
+      <div id="reader-passage" class="passage-container" aria-live="polite">
+        <!-- Spans generated dynamically by JS -->
+      </div>
+
+      <!-- Bottom Progress & Controls Bar -->
+      <div class="fulltext-bottom-bar">
+        <div class="fulltext-nav-controls">
+          <button id="ft-prev-btn" class="nav-btn" title="Previous word">&lt;</button>
+          <button id="ft-play-pause-btn" class="play-btn" title="Play / Pause">Play</button>
+          <button id="ft-next-btn" class="nav-btn" title="Next word">&gt;</button>
+        </div>
+
+        <!-- Progress Timeline Track -->
+        <div class="timeline-container">
+          <input type="range" id="ft-progress-bar" min="0" max="100" value="0" class="timeline-slider">
+        </div>
+
+        <div class="fulltext-stats">
+          <span id="ft-time-left">&lt; 1 min left</span>
+          <span id="ft-wpm">300 wpm</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Advisory Screen Notice (< 480px) -->
+    <div id="screen-notice" class="screen-notice" role="alert">
+      <strong>Screen too small:</strong> Please switch to a larger screen (wider than 480px) for the reading view.
+    </div>
+
+  </main>
+</body>
+</html>
