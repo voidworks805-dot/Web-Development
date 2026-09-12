@@ -146,7 +146,7 @@ body {
 
 /* Colossal Primary Title with Molten Chrome Texture */
 .colossal-hero-section {
-  margin-bottom: 2.25rem;
+  margin-bottom: 2rem;
 }
 
 .colossal-title-wrapper {
@@ -154,19 +154,51 @@ body {
 }
 
 .colossal-title {
-  display: flex;
-  flex-direction: column;
+  display: block;
   font-size: clamp(4.8rem, 14.5vw, 13.5rem);
   font-weight: 900;
-  line-height: 0.88;
+  line-height: 0.95;
   letter-spacing: -0.06em;
   text-transform: none;
   user-select: none;
   color: #000000;
+  margin: 0;
+  padding: 0;
 }
 
 .colossal-title .title-row {
   display: block;
+}
+
+/* Subtle Hero Attribution: "MADE BY ENTROPY" */
+.hero-attribution {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 1rem;
+  padding: 0;
+  margin-left: 0.5rem;
+  user-select: none;
+  line-height: 1;
+}
+
+.attr-prefix {
+  font-family: var(--font-main);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+}
+
+.attr-brand {
+  font-family: 'Aksen', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #000000;
+  line-height: 1;
 }
 
 /* Crisp Razor-Thin Divider */
@@ -214,6 +246,10 @@ body {
   font-size: 0.55rem;
   letter-spacing: 0;
   margin-left: 1px;
+}
+
+.meta-brand-badge {
+  display: none;
 }
 
 .meta-col {
@@ -271,6 +307,11 @@ body {
   line-height: 0.88;
   letter-spacing: -0.055em;
   color: #000000;
+}
+
+/* Perfect Optical Vertical Alignment of "focus" with "Visual" */
+.secondary-title .title-row:last-child {
+  margin-left: 0.0156em;
 }
 
 .editorial-content-block {
@@ -1168,16 +1209,18 @@ body.mode-fulltext #fulltext-view { display: flex; }
     padding: 2rem 1.5rem 4rem;
   }
 
+  /* Keep metadata row clean, horizontal and fully aligned down to 768px */
   .metadata-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem 1.5rem;
-    padding: 1.25rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 1rem 1.5rem;
   }
 
   .meta-right {
-    align-items: flex-start;
-    text-align: left;
+    align-items: flex-end;
+    text-align: right;
   }
 
   .lower-layout {
@@ -1187,6 +1230,48 @@ body.mode-fulltext #fulltext-view { display: flex; }
 }
 
 @media (max-width: 768px) {
+  /* Symmetrical 2x2 grid with full-width brand header below 768px */
+  .metadata-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 1.15rem 1.75rem;
+    padding: 1.25rem 1.5rem;
+  }
+
+  .meta-brand {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    margin-bottom: 0.25rem;
+  }
+
+  .meta-brand-badge {
+    display: inline-block;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--ink-dim);
+    text-transform: uppercase;
+  }
+
+  /* Left Column (items 2 & 4): Flush Left */
+  .metadata-grid > .meta-col:nth-child(2),
+  .metadata-grid > .meta-col:nth-child(4) {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  /* Right Column (items 3 & 5): Flush Right */
+  .metadata-grid > .meta-col:nth-child(3),
+  .metadata-grid > .meta-col:nth-child(5) {
+    align-items: flex-end;
+    text-align: right;
+  }
+
   .features-grid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
@@ -1197,7 +1282,7 @@ body.mode-fulltext #fulltext-view { display: flex; }
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 580px) {
   .top-utility-grid {
     grid-template-columns: 1fr;
     gap: 0.75rem;
@@ -1218,6 +1303,13 @@ body.mode-fulltext #fulltext-view { display: flex; }
 
   .metadata-grid {
     grid-template-columns: 1fr;
+    gap: 0.85rem;
+    padding: 1.15rem 1.25rem;
+  }
+
+  .metadata-grid > .meta-col {
+    align-items: flex-start !important;
+    text-align: left !important;
   }
 
   .reading-mode-view {
@@ -1428,3 +1520,118 @@ body.focus-mode .fulltext-bottom-bar:hover {
   transform: translateY(0);
   pointer-events: auto;
 }
+
+/* ==========================================================================
+   MINIMALIST EDITORIAL FOOTER (index.html) // ENTROPY BRANDING
+   ========================================================================== */
+.editorial-footer {
+  margin-top: 6rem;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.footer-inner {
+  padding: 2.75rem 0 1.5rem;
+}
+
+.footer-minimal-layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Brand Identity Lockup (Company Logo: ENTROPY) */
+.footer-brand-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.entropy-logo {
+  font-family: 'Aksen', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #000000;
+  line-height: 1;
+  display: inline-block;
+  user-select: none;
+}
+
+.brand-subtext {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+}
+
+/* Minimalist Meta & Legal Lockup */
+.footer-meta-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.75rem;
+}
+
+.footer-meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.35rem 0.75rem;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--ink-primary);
+  text-transform: uppercase;
+}
+
+.footer-meta-pill .pulse-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2563eb;
+  box-shadow: 0 0 8px rgba(37, 99, 235, 0.8);
+}
+
+.footer-copy-text {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-bullet {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.footer-copy-text sup {
+  font-size: 0.55rem;
+}
+
+/* Responsive Rules */
+@media (max-width: 680px) {
+  .footer-minimal-layout {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.75rem;
+  }
+
+  .footer-meta-block {
+    align-items: flex-start;
+  }
+}
+
+
