@@ -1200,7 +1200,9 @@ body.mode-fulltext #fulltext-view { display: flex; }
 /* ==========================================================================
    Responsive Breakpoints
    ========================================================================== */
-.screen-notice {
+.screen-notice,
+.hero-screen-notice,
+.header-brand-tag {
   display: none;
 }
 
@@ -1312,32 +1314,169 @@ body.mode-fulltext #fulltext-view { display: flex; }
     text-align: left !important;
   }
 
+  /* Reader Mode Viewport Lockout (< 580px) */
   .reading-mode-view {
     display: none !important;
   }
 
-  .screen-notice {
+  /* Minimalist Upper Section in Reader Mode */
+  .app-header {
+    padding: 0.75rem 1.25rem;
+    background: rgba(255, 255, 255, 0.92);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .header-left {
+    gap: 0;
+  }
+
+  /* Remove all control buttons and document info in header.app */
+  .header-right {
+    display: none !important;
+  }
+
+  .doc-info {
+    display: none !important;
+  }
+
+  /* Clean Minimalist Brand Tag */
+  .header-brand-tag {
     display: block;
-    margin: 1.5rem 0;
-    padding: 1.5rem;
-    border-radius: 4px;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(20px);
-    border: var(--liquid-glass-border);
-  }
-
-  .notice-title {
-    color: var(--ink-primary);
-    font-size: 0.9rem;
+    font-family: 'Aksen', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 1.05rem;
     font-weight: 800;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.14em;
+    color: #000000;
+    user-select: none;
+    line-height: 1;
   }
 
-  .screen-notice p {
-    font-size: 0.82rem;
+  .back-link {
+    padding: 0.4rem 0.85rem;
+    font-size: 0.76rem;
+  }
+
+  /* Remove source text drawer container for a pristine minimalist upper section */
+  .source-panel-container {
+    display: none !important;
+  }
+
+  .reading-workspace {
+    min-height: calc(100vh - 65px);
+    min-height: calc(100dvh - 65px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem 1.25rem;
+    box-sizing: border-box;
+  }
+
+  /* Screen Notice in Reader Mode */
+  .screen-notice {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    padding: 1.35rem;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    margin: 0;
+    width: 100%;
+    max-width: 440px;
+    box-sizing: border-box;
+  }
+
+  .screen-notice .notice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding-bottom: 0.65rem;
+  }
+
+  .screen-notice .notice-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .screen-notice .notice-pulse {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #000000;
+  }
+
+  .screen-notice .notice-tag {
+    font-family: var(--font-main);
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #000000;
+  }
+
+  .screen-notice .notice-code {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--ink-dim);
+    font-family: var(--font-main);
+  }
+
+  .screen-notice .notice-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .screen-notice .notice-title {
+    font-family: var(--font-main);
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+    color: #000000;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .screen-notice .notice-description {
+    font-family: var(--font-main);
+    font-size: 0.85rem;
+    line-height: 1.55;
     color: var(--ink-secondary);
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  .screen-notice .notice-footer {
+    display: flex;
+    align-items: center;
+    padding-top: 0.65rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .screen-notice .notice-meta-tag {
+    font-family: var(--font-main);
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
   }
 }
 
@@ -1631,6 +1770,177 @@ body.focus-mode .fulltext-bottom-bar:hover {
 
   .footer-meta-block {
     align-items: flex-start;
+  }
+}
+
+/* ==========================================================================
+   MOBILE HERO LOCKOUT (< 480px)
+   Notice to switch to larger screen; disable all other elements except hero text & footer
+   ========================================================================== */
+@media (max-width: 480px) {
+  /* Hero page container formatting */
+  .editorial-body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2.25rem 1.25rem 1.5rem;
+    box-sizing: border-box;
+  }
+
+  /* Disable every element except main hero text, notice, and footer */
+  .editorial-body .top-utility-grid,
+  .editorial-body > .hairline-divider,
+  .editorial-body .metadata-grid,
+  .editorial-body .lower-editorial-section {
+    display: none !important;
+  }
+
+  /* Main Hero Text section (kept) */
+  .colossal-hero-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .colossal-title {
+    font-size: clamp(3.2rem, 15vw, 4.4rem);
+    line-height: 0.94;
+    letter-spacing: -0.055em;
+  }
+
+  .hero-attribution {
+    margin-top: 0.85rem;
+    margin-left: 0.25rem;
+  }
+
+  /* Hero Screen Notice: Display prominently */
+  .hero-screen-notice {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    padding: 1.35rem;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    margin: 1rem 0;
+  }
+
+  .hero-screen-notice .notice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding-bottom: 0.65rem;
+  }
+
+  .hero-screen-notice .notice-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .hero-screen-notice .notice-pulse {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #000000;
+  }
+
+  .hero-screen-notice .notice-tag {
+    font-family: var(--font-main);
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #000000;
+  }
+
+  .hero-screen-notice .notice-code {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--ink-dim);
+    font-family: var(--font-main);
+  }
+
+  .hero-screen-notice .notice-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .hero-screen-notice .notice-title {
+    font-family: var(--font-main);
+    font-size: 1.15rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+    color: #000000;
+    margin: 0;
+    text-transform: uppercase;
+  }
+
+  .hero-screen-notice .notice-description {
+    font-family: var(--font-main);
+    font-size: 0.85rem;
+    line-height: 1.55;
+    color: var(--ink-secondary);
+    margin: 0;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-screen-notice .notice-footer {
+    display: flex;
+    align-items: center;
+    padding-top: 0.65rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .hero-screen-notice .notice-meta-tag {
+    font-family: var(--font-main);
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+  }
+
+  /* Minimalist Footer (kept) */
+  .editorial-footer {
+    margin-top: auto;
+    width: 100%;
+  }
+
+  .editorial-footer .hairline-divider {
+    display: block !important;
+  }
+
+  .editorial-footer .footer-inner {
+    padding: 1.25rem 0 0.5rem;
+  }
+
+  .footer-minimal-layout {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .entropy-logo {
+    font-size: 1.55rem;
+    letter-spacing: 0.14em;
+  }
+
+  .footer-meta-block {
+    align-items: flex-start;
+  }
+
+  .footer-copy-text {
+    font-size: 0.65rem;
+    letter-spacing: 0.05em;
   }
 }
 

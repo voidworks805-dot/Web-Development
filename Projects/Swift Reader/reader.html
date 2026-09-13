@@ -48,6 +48,9 @@
           <span>Source Text</span>
         </button>
       </div>
+
+      <!-- Minimal Brand Tag (Active during mobile screen lockout) -->
+      <span class="header-brand-tag">SWIFT</span>
     </div>
   </header>
 
@@ -195,6 +198,23 @@ Go to your library and add something to read. A book you've been meaning to fini
     <div id="screen-notice" class="screen-notice" role="alert">
       <div class="notice-title">Screen Notice</div>
       <p>Please expand your viewport or switch to a display wider than 480px for the optimal RSVP reading experience.</p>
+    <div id="screen-notice" class="screen-notice" role="alert" aria-live="polite">
+      <div class="notice-header">
+        <div class="notice-badge">
+          <span class="notice-pulse"></span>
+          <span class="notice-tag">VIEWPORT NOTICE</span>
+        </div>
+        <span class="notice-code">[RES &lt; 480PX]</span>
+      </div>
+      <div class="notice-body">
+        <h2 class="notice-title">Switch to a Larger Screen</h2>
+        <p class="notice-description">
+          Swift is engineered for high-throughput RSVP reading and dual-tracking modes requiring a wider display to maintain optimal visual pacing. Please access Swift on a tablet, laptop, or desktop computer.
+        </p>
+      </div>
+      <div class="notice-footer">
+        <span class="notice-meta-tag">OPTIMAL EXPERIENCE: ≥ 768PX</span>
+      </div>
     </div>
 
   </main>
