@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>V.A.U.L.T — Visual Application for Unified Library Tracking</title>
+  <meta name="description" content="Offline-capable, privacy-focused digital library and study environment for your PDF documents.">
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Modular Styles -->
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="hero-page">
+
+  <!-- Header -->
+  <header class="app-header">
+    <a href="hero.html" class="brand">
+      <div class="brand-icon">V</div>
+      <div>
+        <span class="brand-title">V.A.U.L.T</span>
+        <span class="brand-badge">Offline Hub</span>
+      </div>
+    </a>
+
+    <div class="header-actions">
+      <!-- Theme Switcher -->
+      <div class="theme-dropdown">
+        <select id="theme-select" class="theme-select" aria-label="Select Theme">
+          <option value="dark" selected>Dark Vault</option>
+          <option value="light">Clean Light</option>
+          <option value="midnight">Midnight OLED</option>
+          <option value="sepia">Warm Sepia</option>
+        </select>
+      </div>
+
+      <!-- Launch App Button -->
+      <a href="index.html" class="btn btn-primary">
+        <span>Enter Vault</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <main>
+    <section class="hero-section">
+      <div class="hero-container">
+        <div class="hero-pill">
+          <span class="hero-pill-dot"></span>
+          <span>Unified Library Tracking</span>
+        </div>
+
+        <h1 class="hero-title">
+          Your Personal PDF Library,<br>
+          <span>Stored 100% Locally.</span>
+        </h1>
+
+        <p class="hero-desc">
+          V.A.U.L.T turns your browser into a high-performance, offline-capable digital library and study workbench. Enjoy a Steam-style grid, native PDF rendering, page bookmarks, and dedicated notes—without a single byte leaving your machine.
+        </p>
+
+        <div class="hero-cta-group">
+          <!-- Primary CTA Button Redirecting to Vault -->
+          <a href="index.html" class="btn btn-hero-primary" id="btn-enter-vault">
+            <span>Enter Your Vault</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+
+          <a href="#features" class="btn btn-hero-secondary">
+            <span>Explore Architecture</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Overview -->
+    <section id="features" class="features-section">
+      <div class="section-title-wrap">
+        <h2 class="section-title">Engineered for Privacy & Productivity</h2>
+        <p class="section-subtitle">Zero servers. Zero cloud sync. Total control over your document collection.</p>
+      </div>
+
+      <div class="features-grid">
+        <!-- Feature 1 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">🗄️</div>
+          <h3 class="feature-title">IndexedDB Storage</h3>
+          <p class="feature-text">
+            Bypasses the restrictive 5MB localStorage limit. Heavy PDF blobs, custom cover art, and metadata are safely indexed in your local browser storage.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">🎮</div>
+          <h3 class="feature-title">Steam-Style Grid</h3>
+          <p class="feature-text">
+            Organize your documents visually with a card grid layout inspired by game libraries, featuring cover art, progress meters, and descriptions.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">📑</div>
+          <h3 class="feature-title">Study Workbench</h3>
+          <p class="feature-text">
+            Powered by PDF.js for hardware-accelerated canvas rendering. Automatically recalls your last read page, quick-jump bookmarks, and per-book notes.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="feature-card">
+          <div class="feature-icon-box">🎯</div>
+          <h3 class="feature-title">Focus Mode</h3>
+          <p class="feature-text">
+            Strip away all navigation bars, side drawers, and chrome with a single click to enter an immersive, distraction-free reading environment.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="hero-footer">
+    <p>V.A.U.L.T — Visual Application for Unified Library Tracking • Offline-First Vanilla Architecture</p>
+  </footer>
+
+  <!-- Theme Synchronization Script -->
+  <script>
+    (function() {
+      const THEME_KEY = 'vault_theme';
+      const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+
+      const themeSelect = document.getElementById('theme-select');
+      if (themeSelect) {
+        themeSelect.value = savedTheme;
+        themeSelect.addEventListener('change', (e) => {
+          const selected = e.target.value;
+          document.documentElement.setAttribute('data-theme', selected);
+          localStorage.setItem(THEME_KEY, selected);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
+

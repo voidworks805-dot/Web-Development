@@ -1,0 +1,171 @@
+/* ==========================================================================
+   V.A.U.L.T - Modular Aesthetic Theme System
+   Separates color tokens and aesthetic variables from structural layout.
+   Themes are controlled via the `data-theme` attribute on the <html> element.
+   ========================================================================== */
+
+:root {
+  /* Common typography & transitions */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, monospace;
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   Default Theme: Dark (Vault Slate)
+   -------------------------------------------------------------------------- */
+:root,
+html[data-theme="dark"] {
+  --bg-primary: #0f1117;
+  --bg-secondary: #171923;
+  --bg-surface: #1e2230;
+  --bg-card: #1a1d28;
+  --bg-card-hover: #222638;
+  --bg-input: #13151f;
+
+  --border-color: #2b3044;
+  --border-focus: #4f5b82;
+
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+
+  --accent-primary: #6366f1;
+  --accent-hover: #4f46e5;
+  --accent-muted: rgba(99, 102, 241, 0.15);
+  --accent-contrast: #ffffff;
+
+  --danger: #ef4444;
+  --danger-hover: #dc2626;
+  --danger-muted: rgba(239, 68, 68, 0.15);
+
+  --success: #10b981;
+  --warning: #f59e0b;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.5);
+
+  --canvas-bg: #2d3139;
+  --modal-backdrop: rgba(7, 8, 12, 0.75);
+}
+
+/* --------------------------------------------------------------------------
+   Light Theme (Clean Paper)
+   -------------------------------------------------------------------------- */
+html[data-theme="light"] {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --bg-input: #f1f5f9;
+
+  --border-color: #e2e8f0;
+  --border-focus: #94a3b8;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+
+  --accent-primary: #4f46e5;
+  --accent-hover: #4338ca;
+  --accent-muted: rgba(79, 70, 229, 0.1);
+  --accent-contrast: #ffffff;
+
+  --danger: #e11d48;
+  --danger-hover: #be123c;
+  --danger-muted: rgba(225, 29, 72, 0.1);
+
+  --success: #059669;
+  --warning: #d97706;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.12);
+
+  --canvas-bg: #e2e8f0;
+  --modal-backdrop: rgba(15, 23, 42, 0.4);
+}
+
+/* --------------------------------------------------------------------------
+   Midnight / OLED Theme
+   -------------------------------------------------------------------------- */
+html[data-theme="midnight"] {
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0a;
+  --bg-surface: #121212;
+  --bg-card: #121212;
+  --bg-card-hover: #1c1c1c;
+  --bg-input: #080808;
+
+  --border-color: #262626;
+  --border-focus: #404040;
+
+  --text-primary: #ffffff;
+  --text-secondary: #a3a3a3;
+  --text-muted: #525252;
+
+  --accent-primary: #38bdf8;
+  --accent-hover: #0284c7;
+  --accent-muted: rgba(56, 189, 248, 0.15);
+  --accent-contrast: #000000;
+
+  --danger: #f43f5e;
+  --danger-hover: #e11d48;
+  --danger-muted: rgba(244, 63, 94, 0.15);
+
+  --success: #34d399;
+  --warning: #fbbf24;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.8);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.9);
+  --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.95);
+
+  --canvas-bg: #1e1e1e;
+  --modal-backdrop: rgba(0, 0, 0, 0.85);
+}
+
+/* --------------------------------------------------------------------------
+   Sepia Theme (Warm Reader)
+   -------------------------------------------------------------------------- */
+html[data-theme="sepia"] {
+  --bg-primary: #f4ecd8;
+  --bg-secondary: #ebe2cb;
+  --bg-surface: #fbf7ee;
+  --bg-card: #fbf7ee;
+  --bg-card-hover: #f1e9d3;
+  --bg-input: #ebe2cb;
+
+  --border-color: #d6ccb2;
+  --border-focus: #b5a88a;
+
+  --text-primary: #3d352a;
+  --text-secondary: #6e6252;
+  --text-muted: #9c8e79;
+
+  --accent-primary: #96613d;
+  --accent-hover: #7b4f32;
+  --accent-muted: rgba(150, 97, 61, 0.15);
+  --accent-contrast: #ffffff;
+
+  --danger: #c2410c;
+  --danger-hover: #9a3412;
+  --danger-muted: rgba(194, 65, 12, 0.15);
+
+  --success: #15803d;
+  --warning: #b45309;
+
+  --shadow-sm: 0 1px 3px rgba(61, 53, 42, 0.08);
+  --shadow-md: 0 4px 12px rgba(61, 53, 42, 0.1);
+  --shadow-lg: 0 12px 28px rgba(61, 53, 42, 0.15);
+
+  --canvas-bg: #e5dbc2;
+  --modal-backdrop: rgba(45, 38, 30, 0.4);
+}
+
